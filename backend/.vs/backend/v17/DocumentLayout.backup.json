@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite\\backend\\",
+  "WorkspaceRootPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{26188452-9A93-4AE6-B74B-7F6CE8F80E39}|backend.API\\backend.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\(1)wep\\fullstack\\quicksite\\backend\\backend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{26188452-9A93-4AE6-B74B-7F6CE8F80E39}|backend.API\\backend.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\(1)wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\backend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26188452-9A93-4AE6-B74B-7F6CE8F80E39}|backend.API\\backend.API.csproj|solutionrelative:backend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26188452-9A93-4AE6-B74B-7F6CE8F80E39}|backend.API\\backend.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\(1)wep\\fullstack\\quicksite\\backend\\backend.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{26188452-9A93-4AE6-B74B-7F6CE8F80E39}|backend.API\\backend.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\(1)wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\backend.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26188452-9A93-4AE6-B74B-7F6CE8F80E39}|backend.API\\backend.API.csproj|solutionrelative:backend.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,23 +24,24 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "StudentsController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite\\backend\\backend.API\\Controllers\\StudentsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\backend.API\\Controllers\\StudentsController.cs",
               "RelativeDocumentMoniker": "backend.API\\Controllers\\StudentsController.cs",
-              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite\\backend\\backend.API\\Controllers\\StudentsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\backend.API\\Controllers\\StudentsController.cs",
               "RelativeToolTip": "backend.API\\Controllers\\StudentsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:39:48.417Z"
+              "WhenOpened": "2025-04-14T17:39:48.417Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite\\backend\\backend.API\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\backend.API\\Program.cs",
               "RelativeDocumentMoniker": "backend.API\\Program.cs",
-              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite\\backend\\backend.API\\Program.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\(1)Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\backend.API\\Program.cs",
               "RelativeToolTip": "backend.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-14T17:27:35.402Z",
               "EditorCaption": ""
