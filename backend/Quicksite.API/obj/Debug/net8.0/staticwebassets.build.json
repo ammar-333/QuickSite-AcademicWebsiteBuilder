@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "6AQrJLqXLO6LRJ9QQIJy51GDMx1SPqsgOLImCGRERtM=",
+  "Source": "Quicksite.API",
+  "BasePath": "_content/Quicksite.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

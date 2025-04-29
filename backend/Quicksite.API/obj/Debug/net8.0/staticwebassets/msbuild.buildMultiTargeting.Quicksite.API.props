@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Quicksite.API.props" />
+</Project>
