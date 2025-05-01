@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\controllers\\academicprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\controllers\\academicprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\models\\domains\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\models\\domains\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\models\\domains\\academicprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\models\\domains\\academicprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\controllers\\websitecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\controllers\\websitecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|c:\\users\\dell\\onedrive\\desktop\\projects\\wep\\fullstack\\quicksite(academicwebsitebuilder)\\backend\\quicksite.api\\models\\dtos\\academicprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{357531B8-C6F7-40A1-BCED-11EEC684FFDC}|Quicksite.API\\Quicksite.API.csproj|solutionrelative:quicksite.api\\models\\dtos\\academicprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +43,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "Quicksite.API\\Controllers\\CustomerController.cs",
-              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "Quicksite.API\\Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "Quicksite.API\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCoAAAB4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:31:09.21Z",
+              "WhenOpened": "2025-05-01T15:01:28.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Models\\Domains\\Admin.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Models\\Domains\\Admin.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Models\\Domains\\Admin.cs",
+              "RelativeToolTip": "Quicksite.API\\Models\\Domains\\Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T15:01:18.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Quicksite.API\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T15:01:13.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AcademicProfile.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Models\\Domains\\AcademicProfile.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Models\\Domains\\AcademicProfile.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Models\\Domains\\AcademicProfile.cs",
+              "RelativeToolTip": "Quicksite.API\\Models\\Domains\\AcademicProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T15:00:29.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WebsiteController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\WebsiteController.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Controllers\\WebsiteController.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\WebsiteController.cs",
+              "RelativeToolTip": "Quicksite.API\\Controllers\\WebsiteController.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAkwFYAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T14:59:07.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AcademicProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Models\\Dtos\\AcademicProfileDto.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Models\\Dtos\\AcademicProfileDto.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Models\\Dtos\\AcademicProfileDto.cs",
+              "RelativeToolTip": "Quicksite.API\\Models\\Dtos\\AcademicProfileDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T14:57:31.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AcademicProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\AcademicProfileController.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Controllers\\AcademicProfileController.cs",
+              "ToolTip": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\Wep\\Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Controllers\\AcademicProfileController.cs",
+              "RelativeToolTip": "Quicksite.API\\Controllers\\AcademicProfileController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCoAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T14:57:14.044Z",
               "EditorCaption": ""
             }
           ]

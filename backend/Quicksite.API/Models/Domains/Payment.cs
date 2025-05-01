@@ -1,4 +1,6 @@
-﻿namespace Quicksite.API.Models.Domains
+﻿using System.Text.Json.Serialization;
+
+namespace Quicksite.API.Models.Domains
 {
     public class Payment
     {
@@ -12,6 +14,7 @@
 
         public string? PaymentHistory { get; set; }
 
+        [JsonIgnore]
         public virtual Customer Customer { get; set; } = null!;
     }
 }

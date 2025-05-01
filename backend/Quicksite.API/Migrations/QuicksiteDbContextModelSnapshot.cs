@@ -157,7 +157,7 @@ namespace Quicksite.API.Migrations
                     b.Property<string>("MetaData")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TemplateId")
+                    b.Property<Guid?>("TemplateId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Theme")
@@ -204,10 +204,8 @@ namespace Quicksite.API.Migrations
                         .IsRequired();
 
                     b.HasOne("Quicksite.API.Models.Domains.Template", "Template")
-                        .WithMany("Websites")
-                        .HasForeignKey("TemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("TemplateId");
 
                     b.Navigation("Customer");
 
@@ -219,16 +217,9 @@ namespace Quicksite.API.Migrations
                     b.Navigation("AcademicProfile")
                         .IsRequired();
 
-                    b.Navigation("Payment")
-                        .IsRequired();
+                    b.Navigation("Payment");
 
-                    b.Navigation("Website")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Quicksite.API.Models.Domains.Template", b =>
-                {
-                    b.Navigation("Websites");
+                    b.Navigation("Website");
                 });
 #pragma warning restore 612, 618
         }

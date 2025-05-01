@@ -1,4 +1,6 @@
-﻿namespace Quicksite.API.Models.Domains
+﻿using System.Text.Json.Serialization;
+
+namespace Quicksite.API.Models.Domains
 {
     public class AcademicProfile
     {
@@ -8,6 +10,7 @@
 
         public string? GoogleScholarUrl { get; set; }
 
+        [JsonIgnore]
         public virtual Customer Customer { get; set; } = null!;
     }
 }

@@ -27,7 +27,7 @@ namespace Quicksite.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             //get all the customers
-            var customersModel = await dbContext.Customers.ToListAsync();
+            var customersModel = await dbContext.Customers.Include("Website").Include("Payment").ToListAsync();
 
             //map model to Dto
             var customerDto = mapper.Map<List<CustomerDto>>(customersModel);
@@ -41,7 +41,7 @@ namespace Quicksite.API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var customerModel = await dbContext.Customers.FindAsync(id);
+            var customerModel = await dbContext.Customers.Include("Website").Include("Payment").FirstOrDefaultAsync(x => x.CustomerId == id);
 
             if (customerModel == null) return NotFound();
 
