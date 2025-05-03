@@ -10,6 +10,8 @@ namespace Quicksite.API.Models.Domains
 
         public Guid? TemplateId { get; set; }
 
+        public string Name { get; set; } = null!;
+
         public string HostUrl { get; set; } = null!;
 
         public string? MetaData { get; set; }

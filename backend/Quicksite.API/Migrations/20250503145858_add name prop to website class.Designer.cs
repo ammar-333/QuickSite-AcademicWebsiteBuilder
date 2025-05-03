@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quicksite.API.Data;
 
@@ -11,9 +12,11 @@ using Quicksite.API.Data;
 namespace Quicksite.API.Migrations
 {
     [DbContext(typeof(QuicksiteDbContext))]
-    partial class QuicksiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250503145858_add name prop to website class")]
+    partial class addnameproptowebsiteclass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -635,6 +635,40 @@
         "tags": [
           "Website"
         ],
+        "parameters": [
+          {
+            "name": "filterOn",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filterQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -850,6 +884,9 @@
         "additionalProperties": false
       },
       "AddWebsiteDto": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "customerId": {
@@ -860,6 +897,11 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "hostUrl": {
             "type": "string",
@@ -983,6 +1025,10 @@
           "templateId": {
             "type": "string",
             "format": "uuid",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
             "nullable": true
           },
           "hostUrl": {

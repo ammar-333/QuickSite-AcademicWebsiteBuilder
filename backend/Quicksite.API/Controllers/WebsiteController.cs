@@ -22,11 +22,26 @@ namespace Quicksite.API.Controllers
         }
 
         //get all Websites
-        //Get: https://Localhost:portnumber/api/Website
+        //Get: https://Localhost:portnumber/api/Website?filterOn=Name&FilterQuery=Track&pageNumber=1&pageSize=10
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
+            [FromQuery] int pageNumber = 1, [FromQuery] int PageSize = 10)
         {
-            var WebsiteModel = await dbContext.Websites.Include("Template").Include("Customer").ToListAsync();
+            var Website = dbContext.Websites.Include("Template").Include("Customer").AsQueryable();
+
+            //filtering
+            if (string.IsNullOrWhiteSpace(filterQuery) == false && string.IsNullOrWhiteSpace(filterOn) == false)
+            {
+                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    Website = Website.Where(x => x.Name.Contains(filterQuery));
+                }
+            }
+
+            //pagination
+            var skipResults = (pageNumber - 1) * PageSize;
+
+            var WebsiteModel = await Website.Skip(skipResults).Take(PageSize).ToListAsync();
 
             //map model to Dto
             var WebsiteDto = mapper.Map<List<WebsiteDto>>(WebsiteModel);
@@ -79,6 +94,7 @@ namespace Quicksite.API.Controllers
             if (WebsiteModel == null) return NotFound();
 
             //map dto to model
+            WebsiteModel.Name = updateWebsiteDto.Name;
             WebsiteModel.HostUrl = updateWebsiteDto.HostUrl;
             WebsiteModel.MetaData = updateWebsiteDto.MetaData;
             WebsiteModel.Theme = updateWebsiteDto.Theme;

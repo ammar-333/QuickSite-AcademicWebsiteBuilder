@@ -1,4 +1,5 @@
-﻿using Quicksite.API.Models.Domains;
+﻿using System.ComponentModel.DataAnnotations;
+using Quicksite.API.Models.Domains;
 
 namespace Quicksite.API.Models.Dtos
 {
@@ -7,6 +8,10 @@ namespace Quicksite.API.Models.Dtos
         public Guid CustomerId { get; set; }
 
         public Guid? TemplateId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; } = null!;
 
         public string HostUrl { get; set; } = null!;
 
