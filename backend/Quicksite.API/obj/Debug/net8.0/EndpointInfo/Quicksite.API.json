@@ -793,6 +793,10 @@
   "components": {
     "schemas": {
       "AddAcademicProfileDto": {
+        "required": [
+          "customerId",
+          "googleScholarUrl"
+        ],
         "type": "object",
         "properties": {
           "customerId": {
@@ -800,50 +804,69 @@
             "format": "uuid"
           },
           "googleScholarUrl": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "uri"
           }
         },
         "additionalProperties": false
       },
       "AddAdminDto": {
+        "required": [
+          "adminEmail",
+          "adminName",
+          "adminPass"
+        ],
         "type": "object",
         "properties": {
           "adminEmail": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "adminName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
           },
           "adminPass": {
-            "type": "string",
-            "nullable": true
+            "minLength": 6,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "AddCustomerDto": {
+        "required": [
+          "customerEmail",
+          "customerName",
+          "customerPass",
+          "gender"
+        ],
         "type": "object",
         "properties": {
           "customerEmail": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "customerName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
           },
           "customerPass": {
-            "type": "string",
-            "nullable": true
+            "minLength": 8,
+            "type": "string"
           },
           "gender": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "Male|Female",
+            "type": "string"
           },
           "age": {
+            "maximum": 100,
+            "minimum": 18,
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -852,6 +875,11 @@
         "additionalProperties": false
       },
       "AddPaymentDto": {
+        "required": [
+          "amount",
+          "customerId",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "customerId": {
@@ -863,8 +891,9 @@
             "format": "double"
           },
           "status": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "Success|Pending|Failed",
+            "type": "string"
           },
           "paymentHistory": {
             "type": "string",
@@ -877,6 +906,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           }
@@ -885,6 +916,8 @@
       },
       "AddWebsiteDto": {
         "required": [
+          "customerId",
+          "hostUrl",
           "name"
         ],
         "type": "object",
@@ -904,14 +937,19 @@
             "type": "string"
           },
           "hostUrl": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "uri"
           },
           "metaData": {
+            "maxLength": 250,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "theme": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
@@ -929,6 +967,10 @@
         "additionalProperties": false
       },
       "UpdateAcademicProfileDto": {
+        "required": [
+          "customerId",
+          "googleScholarUrl"
+        ],
         "type": "object",
         "properties": {
           "customerId": {
@@ -936,50 +978,69 @@
             "format": "uuid"
           },
           "googleScholarUrl": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "uri"
           }
         },
         "additionalProperties": false
       },
       "UpdateAdminDto": {
+        "required": [
+          "adminEmail",
+          "adminName",
+          "adminPass"
+        ],
         "type": "object",
         "properties": {
           "adminEmail": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "adminName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
           },
           "adminPass": {
-            "type": "string",
-            "nullable": true
+            "minLength": 6,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "UpdateCustomerDto": {
+        "required": [
+          "customerEmail",
+          "customerName",
+          "customerPass",
+          "gender"
+        ],
         "type": "object",
         "properties": {
           "customerEmail": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "customerName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
           },
           "customerPass": {
-            "type": "string",
-            "nullable": true
+            "minLength": 8,
+            "type": "string"
           },
           "gender": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "Male|Female",
+            "type": "string"
           },
           "age": {
+            "maximum": 100,
+            "minimum": 18,
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -988,6 +1049,11 @@
         "additionalProperties": false
       },
       "UpdatePaymentDto": {
+        "required": [
+          "amount",
+          "customerId",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "customerId": {
@@ -999,8 +1065,9 @@
             "format": "double"
           },
           "status": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "Success|Pending|Failed",
+            "type": "string"
           },
           "paymentHistory": {
             "type": "string",
@@ -1013,6 +1080,8 @@
         "type": "object",
         "properties": {
           "description": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           }
@@ -1020,26 +1089,41 @@
         "additionalProperties": false
       },
       "UpdateWebsiteDto": {
+        "required": [
+          "customerId",
+          "hostUrl",
+          "name"
+        ],
         "type": "object",
         "properties": {
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "templateId": {
             "type": "string",
             "format": "uuid",
             "nullable": true
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "hostUrl": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "uri"
           },
           "metaData": {
+            "maxLength": 250,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "theme": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },

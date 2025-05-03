@@ -1,9 +1,19 @@
-﻿namespace Quicksite.API.Models.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Quicksite.API.Models.Dtos
 {
     public class AddAdminDto
     {
+        [Required]
+        [EmailAddress]
         public string AdminEmail { get; set; } = null!;
+        
+        [Required]
+        [StringLength(20)]
         public string AdminName { get; set; } = null!;
+
+        [Required]
+        [MinLength(6)]
         public string AdminPass { get; set; } = null!;
     }
 }

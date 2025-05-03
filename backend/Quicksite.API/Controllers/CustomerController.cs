@@ -58,6 +58,11 @@ namespace Quicksite.API.Controllers
 
             var customerModel = mapper.Map<Customer>(addCustomerDto);
 
+            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerEmail == customerModel.CustomerEmail);
+
+            if (existingCustomer != null)
+                return Conflict("Email already registered.");
+
             //map to the db
             await dbContext.Customers.AddAsync(customerModel);
             await dbContext.SaveChangesAsync();
@@ -79,9 +84,17 @@ namespace Quicksite.API.Controllers
             if (customerModel == null)
                 return NotFound();
 
+
             //make the changes
             customerModel.CustomerName = updateCustomerDto.CustomerName;
-            customerModel.CustomerEmail = updateCustomerDto.CustomerEmail;
+
+            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerEmail == customerModel.CustomerEmail);
+
+            if (existingCustomer != null)
+                return Conflict("Email already registered.");
+            else 
+                customerModel.CustomerEmail = updateCustomerDto.CustomerEmail;
+            
             customerModel.CustomerPass = updateCustomerDto.CustomerPass;
             customerModel.Gender = updateCustomerDto.Gender;
             customerModel.Age = updateCustomerDto.Age;
