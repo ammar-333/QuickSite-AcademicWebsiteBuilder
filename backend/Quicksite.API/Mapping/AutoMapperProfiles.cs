@@ -20,10 +20,6 @@ namespace Quicksite.API.Mapping
             CreateMap<Template, AddTemplateDto>().ReverseMap();
             CreateMap<Template, UpdateTemplateDto>().ReverseMap();
 
-            CreateMap<Admin, AdminDto>().ReverseMap();
-            CreateMap<Admin, AddAdminDto>().ReverseMap();
-            CreateMap<Admin, UpdateAdminDto>().ReverseMap();
-
             CreateMap<AcademicProfile, AcademicProfileDto>().ReverseMap();
             CreateMap<AcademicProfile, AddAcademicProfileDto>().ReverseMap();
             CreateMap<AcademicProfile, UpdateAcademicProfileDto>().ReverseMap();

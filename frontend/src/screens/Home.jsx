@@ -1,16 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Hero from '../components/Hero'
+import FeaturesSection from '../components/FeaturesSection'
+import ActionSection from '../components/ActionSection'
+import TestimonialsSection from '../components/TestimonialsSection'
+import CustomizeSection from '../components/CustomizeSection'
+import AcademicProfileSection from '../components/AcademicProfileSection'
+import CommunitySection from '../components/CommunitySection'
+import PricingSection from '../components/PricingSection'
 
 const Home = () => {
   return (
     <div>
-      <h1>hi from home</h1>
-      <Link to="/">home</Link><br />
-      <Link to="/account">account</Link><br />
-      <Link to="/dashboard">dashboard</Link><br />
-      <Link to="/gallery">gallery</Link><br />
-      <Link to="/login">login</Link><br />
-      <Link to="/signup">signup</Link><br />
+      <Hero />
+      <FeaturesSection />
+      <CustomizeSection />
+      <AcademicProfileSection />
+      <CommunitySection />
+      <PricingSection />
+      <TestimonialsSection />
+      <ActionSection />
     </div>
   )
 }

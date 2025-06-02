@@ -16,11 +16,8 @@ namespace Quicksite.API.Models.Dtos
         [MinLength(8)]
         public string CustomerPass { get; set; }
 
-        [Required]
-        [RegularExpression("Male|Female", ErrorMessage = "Gender must be 'Male' or 'Female'.")]
-        public string? Gender { get; set; }
+        public string? College { get; set; }
 
-        [Range(18, 100, ErrorMessage = "Age must be between 18 and 100")]
-        public int? Age { get; set; }
+        public string? Major { get; set; }
     }
 }

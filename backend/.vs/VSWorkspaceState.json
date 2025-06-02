@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Quicksite.API",
+    "\\Quicksite.API\\bin\\Release",
+    "\\Quicksite.API\\Mapping",
+    "\\Quicksite.API\\Migrations",
+    "\\Quicksite.API\\Models",
+    "\\Quicksite.API\\Models\\Dtos",
+    "\\Quicksite.API\\obj\\Release",
+    "\\Quicksite.API\\Repositories",
+    "\\Quicksite.API\\Services"
+  ],
+  "SelectedNode": "\\Quicksite.API\\Repositories\\TokenRepository.cs",
+  "PreviewInSolutionExplorer": false
+}

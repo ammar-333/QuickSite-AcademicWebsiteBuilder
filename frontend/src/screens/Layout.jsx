@@ -2,13 +2,20 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { useLocation } from "react-router-dom";
 
 
 const Layout = () => {
+  const location = useLocation();
+
+  const hideNavbarPaths = ["/login", "/websitebuilder", "/editwebsite", "/showtemplate"];
+
+  const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
+
   return (
     <div>
       <header>
-        <Navbar />
+        {!shouldHideNavbar && <Navbar />}
       </header>
 
       <main>
@@ -16,7 +23,7 @@ const Layout = () => {
       </main>
 
       <footer>
-        <Footer />
+        {!shouldHideNavbar && <Footer />}
       </footer>
     </div>
   )

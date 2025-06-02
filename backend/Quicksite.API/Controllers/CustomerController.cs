@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Quicksite.API.Data;
 using Quicksite.API.Models.Domains;
 using Quicksite.API.Models.Dtos;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
+using Quicksite.API.Repositories;
 
 namespace Quicksite.API.Controllers
 {
@@ -14,9 +18,13 @@ namespace Quicksite.API.Controllers
     {
         private readonly QuicksiteDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly UserManager<AppUser> userManager;
+        private readonly ITokenRepository tokenRepository;
 
-        public CustomerController(QuicksiteDbContext dbContext, IMapper mapper)
+        public CustomerController(UserManager<AppUser> userManager, ITokenRepository tokenRepository, QuicksiteDbContext dbContext, IMapper mapper)
         {
+            this.userManager = userManager;
+            this.tokenRepository = tokenRepository;
             this.dbContext = dbContext;
             this.mapper = mapper;
         }
@@ -53,26 +61,61 @@ namespace Quicksite.API.Controllers
         //create new customer 
         //Post https://localhost:portnumber/api/Customer
         [HttpPost]
+        [Route("Register")]
         public async Task<IActionResult> Create([FromBody] AddCustomerDto addCustomerDto)
         {
+            var identityUser = new AppUser
+            {
+                UserName = addCustomerDto.CustomerName,
+                Email = addCustomerDto.CustomerEmail,
+                College = addCustomerDto.College,
+                Major = addCustomerDto.Major,
+                
+            };
 
-            var customerModel = mapper.Map<Customer>(addCustomerDto);
+            var identityResult = await userManager.CreateAsync(identityUser, addCustomerDto.CustomerPass);
 
-            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerEmail == customerModel.CustomerEmail);
+            if (identityResult.Succeeded)
+            {
 
-            if (existingCustomer != null)
-                return Conflict("Email already registered.");
+                return Ok("User was registered! Please login.");
+            }
 
-            //map to the db
-            await dbContext.Customers.AddAsync(customerModel);
-            await dbContext.SaveChangesAsync();
+            else
+            {
+                var errors = identityResult.Errors.Select(e => e.Description);
+                return BadRequest(new { Message = "User creation failed", Errors = errors });
+            }
 
-            var customerDto = mapper.Map<CustomerDto>(customerModel);
-
-            return Ok(customerDto);
         }
 
-        //Update an existing customer
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto LoginRequestDto)
+        {
+            var user = await userManager.FindByEmailAsync(LoginRequestDto.Email);
+
+            if (user != null)
+            {
+                var checkPasswordResult = await userManager.CheckPasswordAsync(user, LoginRequestDto.Password);
+
+                if (checkPasswordResult)
+                {
+                    // Creat Token
+                    var jwtToken = tokenRepository.CreateJWTToken(user);
+
+                    var response = new LoginResponseDto
+                    {
+                        JwtToken = jwtToken
+                    };
+
+                    return Ok(response);
+                }
+            }
+            return BadRequest("Username or password incorrect");
+        }
+        
+         //Update an existing customer
         //Put: https://localhost:portnumber/api/Customer/{id}
         [HttpPut]
         [Route("{id:Guid}")]
@@ -92,13 +135,13 @@ namespace Quicksite.API.Controllers
 
             if (existingCustomer != null)
                 return Conflict("Email already registered.");
-            else 
+            else
+            {
                 customerModel.CustomerEmail = updateCustomerDto.CustomerEmail;
-            
-            customerModel.CustomerPass = updateCustomerDto.CustomerPass;
-            customerModel.Gender = updateCustomerDto.Gender;
-            customerModel.Age = updateCustomerDto.Age;
-
+                customerModel.CustomerPass = updateCustomerDto.CustomerPass;
+                customerModel.College = updateCustomerDto.College;
+                customerModel.Major = updateCustomerDto.Major;
+            }
             await dbContext.SaveChangesAsync();
 
             var customerDto = mapper.Map<CustomerDto>(customerModel);

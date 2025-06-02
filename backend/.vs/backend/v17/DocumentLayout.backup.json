@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hadda\\Desktop\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Repositories\\TokenRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Quicksite.API\\Repositories\\TokenRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Repositories\\ITokenRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Quicksite.API\\Repositories\\ITokenRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Quicksite.API\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Models\\Dtos\\LoginResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Quicksite.API\\Models\\Dtos\\LoginResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Controllers\\CustomerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Quicksite.API\\Controllers\\CustomerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 306,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TokenRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Repositories\\TokenRepository.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Repositories\\TokenRepository.cs",
+              "ToolTip": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Repositories\\TokenRepository.cs",
+              "RelativeToolTip": "Quicksite.API\\Repositories\\TokenRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T15:44:05.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ITokenRepository.cs",
+              "DocumentMoniker": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Repositories\\ITokenRepository.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Repositories\\ITokenRepository.cs",
+              "ToolTip": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Repositories\\ITokenRepository.cs",
+              "RelativeToolTip": "Quicksite.API\\Repositories\\ITokenRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T15:44:01.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Quicksite.API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Quicksite.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-31T15:43:56.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Models\\Dtos\\LoginResponseDto.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Models\\Dtos\\LoginResponseDto.cs",
+              "ToolTip": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Models\\Dtos\\LoginResponseDto.cs",
+              "RelativeToolTip": "Quicksite.API\\Models\\Dtos\\LoginResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T15:37:22.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Quicksite.API\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\hadda\\Desktop\\backend\\Quicksite.API\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Quicksite.API\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEEAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T15:10:30.561Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

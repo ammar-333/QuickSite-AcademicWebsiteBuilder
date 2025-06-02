@@ -1,74 +1,93 @@
-# QuickSite(Academic-Website-Builder)
+# QuickSite
 
-QuickSite is an Academic Website Builder mean for academics who wants to create there website in minutes
+QuickSite is an AI-powered Academic-Website-Builder designed to help academics create professional websites effortlessly. It automates the process of building a website, integrating publications, and managing content, allowing researchers to focus on their work.
 
-# Getting Started with Create React App
+## 🚀 Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Follow these instructions to set up and run the project locally.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+### 🧹 Tech Stack
 
-### `npm start`
+* **Frontend**: React (with Vite), JavaScript, Tailwind CSS
+* **Backend**: ASP.NET Core Web API
+* **Database**: SQL Server DB
+* **Package Manager**: Yarn (frontend), .NET CLI (backend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📂 Project Structure
 
-### `npm test`
+```
+/project-root(Quicksite)
+│
+├── /frontend     # React app (Vite)
+│
+└── /backend      # ASP.NET Core Web API
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 👥 Running the Frontend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In the `/frontend` directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+yarn install
+```
 
-### `npm run eject`
+### Start development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+yarn dev
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+By default, it runs at: [http://localhost:3000](http://localhost:3000)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The app supports hot module replacement and reloads automatically on code changes.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## ⚙️ Running the Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In the `/backend` directory:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Using .NET CLI:
 
-### Code Splitting
+```bash
+dotnet run
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+By default, it will be available at: [https://localhost:5001](https://localhost:5001)
 
-### Analyzing the Bundle Size
+You can configure the port and environment in `launchSettings.json` or via CLI.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🔄 Connecting Frontend and Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Update the API base URL in your frontend code (e.g., in an `.env` or config file):
 
-### Advanced Configuration
+```env
+VITE_API_URL=https://localhost:5001
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Make sure CORS is enabled in your ASP.NET API to allow communication between frontend and backend.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## ✅ Features
 
-### `npm run build` fails to minify
+* 🔐 User authentication
+* 📄 CRUD operations
+* ⚡ Fast dev experience with Vite
+* 🔌 RESTful API with ASP.NET Core
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📖 License
+
+MIT – feel free to use and modify.

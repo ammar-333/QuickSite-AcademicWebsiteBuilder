@@ -130,165 +130,11 @@
         }
       }
     },
-    "/api/Admin": {
-      "get": {
-        "tags": [
-          "Admin"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Admin"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAdminDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAdminDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAdminDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/{id}": {
-      "get": {
-        "tags": [
-          "Admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAdminDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAdminDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAdminDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Customer": {
       "get": {
         "tags": [
           "Customer"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Customer"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddCustomerDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddCustomerDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddCustomerDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -373,6 +219,68 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Customer/Register": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCustomerDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCustomerDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCustomerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Customer/Login": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -811,37 +719,11 @@
         },
         "additionalProperties": false
       },
-      "AddAdminDto": {
-        "required": [
-          "adminEmail",
-          "adminName",
-          "adminPass"
-        ],
-        "type": "object",
-        "properties": {
-          "adminEmail": {
-            "minLength": 1,
-            "type": "string",
-            "format": "email"
-          },
-          "adminName": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
-          },
-          "adminPass": {
-            "minLength": 6,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "AddCustomerDto": {
         "required": [
           "customerEmail",
           "customerName",
-          "customerPass",
-          "gender"
+          "customerPass"
         ],
         "type": "object",
         "properties": {
@@ -859,16 +741,12 @@
             "minLength": 8,
             "type": "string"
           },
-          "gender": {
-            "minLength": 1,
-            "pattern": "Male|Female",
-            "type": "string"
+          "college": {
+            "type": "string",
+            "nullable": true
           },
-          "age": {
-            "maximum": 100,
-            "minimum": 18,
-            "type": "integer",
-            "format": "int32",
+          "major": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -966,6 +844,26 @@
         },
         "additionalProperties": false
       },
+      "LoginRequestDto": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateAcademicProfileDto": {
         "required": [
           "customerId",
@@ -985,37 +883,11 @@
         },
         "additionalProperties": false
       },
-      "UpdateAdminDto": {
-        "required": [
-          "adminEmail",
-          "adminName",
-          "adminPass"
-        ],
-        "type": "object",
-        "properties": {
-          "adminEmail": {
-            "minLength": 1,
-            "type": "string",
-            "format": "email"
-          },
-          "adminName": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
-          },
-          "adminPass": {
-            "minLength": 6,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "UpdateCustomerDto": {
         "required": [
           "customerEmail",
           "customerName",
-          "customerPass",
-          "gender"
+          "customerPass"
         ],
         "type": "object",
         "properties": {
@@ -1033,16 +905,12 @@
             "minLength": 8,
             "type": "string"
           },
-          "gender": {
-            "minLength": 1,
-            "pattern": "Male|Female",
-            "type": "string"
+          "college": {
+            "type": "string",
+            "nullable": true
           },
-          "age": {
-            "maximum": 100,
-            "minimum": 18,
-            "type": "integer",
-            "format": "int32",
+          "major": {
+            "type": "string",
             "nullable": true
           }
         },
