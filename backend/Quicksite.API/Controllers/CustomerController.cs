@@ -9,6 +9,7 @@ using Quicksite.API.Models.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Quicksite.API.Repositories;
+using System.Security.Claims;
 
 namespace Quicksite.API.Controllers
 {
@@ -34,29 +35,38 @@ namespace Quicksite.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            //get all the customers
-            var customersModel = await dbContext.Customers.Include("Website").Include("Payment").ToListAsync();
+            var users = await userManager.Users
+            .Include(u => u.Website)
+            .Include(u => u.Payment)
+            .ToListAsync();
 
-            //map model to Dto
-            var customerDto = mapper.Map<List<CustomerDto>>(customersModel);
+            var customerDtos = mapper.Map<List<CustomerDto>>(users); 
 
-            return Ok(customerDto);
+            return Ok(customerDtos);
         }
 
-        //Get one customers
-        //Get: https://Localhost:portnumbrt//api/Customer/{id}
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid id)
+
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetProfile()
         {
-            var customerModel = await dbContext.Customers.Include("Website").Include("Payment").FirstOrDefaultAsync(x => x.CustomerId == id);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            if (customerModel == null) return NotFound();
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null) return NotFound();
 
-            var customerDto = mapper.Map<CustomerDto>(customerModel);
-
-            return Ok(customerDto);
+            return Ok(new
+            {
+                Id = user.Id,
+                Username = user.UserName,
+                Email = user.Email,
+                Major = user.Major,
+                College = user.College,
+                googleScholar = user.googleScholar,
+                isWebsiteCreated = user.isWebsiteCreated
+            });
         }
+
 
         //create new customer 
         //Post https://localhost:portnumber/api/Customer
@@ -70,7 +80,8 @@ namespace Quicksite.API.Controllers
                 Email = addCustomerDto.CustomerEmail,
                 College = addCustomerDto.College,
                 Major = addCustomerDto.Major,
-                
+                googleScholar = addCustomerDto.googleScholar,
+
             };
 
             var identityResult = await userManager.CreateAsync(identityUser, addCustomerDto.CustomerPass);
@@ -78,13 +89,13 @@ namespace Quicksite.API.Controllers
             if (identityResult.Succeeded)
             {
 
-                return Ok("User was registered! Please login.");
+                return Ok("you were registered successfully");
             }
 
             else
             {
                 var errors = identityResult.Errors.Select(e => e.Description);
-                return BadRequest(new { Message = "User creation failed", Errors = errors });
+                return BadRequest(errors);
             }
 
         }
@@ -114,39 +125,35 @@ namespace Quicksite.API.Controllers
             }
             return BadRequest("Username or password incorrect");
         }
-        
-         //Update an existing customer
-        //Put: https://localhost:portnumber/api/Customer/{id}
+
+
+
         [HttpPut]
         [Route("{id:Guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCustomerDto updateCustomerDto)
         {
-            //Check if customer exists 
-            var customerModel = await dbContext.Customers.FindAsync(id);
-
-            if (customerModel == null)
+            // Check if AppUser exists
+            var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Id == id.ToString());
+            if (appUser == null)
                 return NotFound();
 
-
-            //make the changes
-            customerModel.CustomerName = updateCustomerDto.CustomerName;
-
-            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerEmail == customerModel.CustomerEmail);
-
-            if (existingCustomer != null)
+            // Check if email is already taken by another user
+            var existingUser = await userManager.FindByEmailAsync(appUser.Email);
+            if (existingUser != null && existingUser.Id != appUser.Id)
                 return Conflict("Email already registered.");
-            else
-            {
-                customerModel.CustomerEmail = updateCustomerDto.CustomerEmail;
-                customerModel.CustomerPass = updateCustomerDto.CustomerPass;
-                customerModel.College = updateCustomerDto.College;
-                customerModel.Major = updateCustomerDto.Major;
-            }
-            await dbContext.SaveChangesAsync();
 
-            var customerDto = mapper.Map<CustomerDto>(customerModel);
+            // Make the changes (manual mapping from UpdateCustomerDto to AppUser)
+            appUser.UserName = updateCustomerDto.CustomerName;
+            appUser.Email = updateCustomerDto.CustomerEmail;
+            appUser.College = updateCustomerDto.College;
+            appUser.Major = updateCustomerDto.Major;
+            appUser.googleScholar = updateCustomerDto.googleScholar;
 
-            return Ok(customerDto);
+            var result = await userManager.UpdateAsync(appUser);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok();
         }
 
 
@@ -156,14 +163,16 @@ namespace Quicksite.API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            //Check if region exists
-            var customerModel = await dbContext.Customers.FindAsync(id);
+            var appUser = await userManager.FindByIdAsync(id.ToString());
 
-            if (customerModel == null) return NotFound();
+            if (appUser == null)
+                return NotFound();
 
-            //delete
-            dbContext.Customers.Remove(customerModel);
-            await dbContext.SaveChangesAsync();
+            // Delete the user
+            var result = await userManager.DeleteAsync(appUser);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
 
             return Ok();
         }

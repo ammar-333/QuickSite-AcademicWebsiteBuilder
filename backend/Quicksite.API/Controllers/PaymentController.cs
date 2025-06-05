@@ -27,7 +27,7 @@ namespace Quicksite.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             //get all the Payments
-            var PaymentModel = await dbContext.Payments.Include("Customer").ToListAsync();
+            var PaymentModel = await dbContext.Payments.Include(w => w.AppUser).ToListAsync();
 
             //map model to Dto
             var PaymentDto = mapper.Map<List<PaymentDto>>(PaymentModel);
@@ -40,7 +40,7 @@ namespace Quicksite.API.Controllers
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var PaymentModel = await dbContext.Payments.Include("Customer").FirstOrDefaultAsync(x => x.PaymentId == id);
+            var PaymentModel = await dbContext.Payments.Include(w => w.AppUser).FirstOrDefaultAsync(x => x.PaymentId == id);
 
             if (PaymentModel == null) return NotFound();
 
@@ -66,27 +66,6 @@ namespace Quicksite.API.Controllers
             return Ok(PaymentDto);
         }
 
-        //Update an existing Payment
-        // PUT: https://localhost:portnumber/api/Payment/{id}
-        [HttpPut("{id:Guid}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdatePaymentDto updatePaymentDto)
-        {
-            //Check if Payment exists
-            var PaymentModel = await dbContext.Payments.FindAsync(id);
-
-            if (PaymentModel == null)
-                return NotFound();
-            //make the changes
-            PaymentModel.Amount = updatePaymentDto.Amount;
-            PaymentModel.Status = updatePaymentDto.Status;
-            PaymentModel.PaymentHistory = updatePaymentDto.PaymentHistory;
-
-            await dbContext.SaveChangesAsync();
-
-            var PaymentDto = mapper.Map<PaymentDto>(PaymentModel);
-
-            return Ok(PaymentDto);
-        }
 
         //Delete a Payment
         // DELETE: https://localhost:portnumber/api/Payment/{id}

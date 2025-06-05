@@ -5098,11 +5098,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\1-Wep\\1-Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Quicksite.API.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\1-Wep\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Quicksite.API.csproj",
       "projectName": "Quicksite.API",
-      "projectPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\1-Wep\\1-Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Quicksite.API.csproj",
+      "projectPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\1-Wep\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\Quicksite.API.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\1-Wep\\1-Fullstack\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\OneDrive\\Desktop\\projects\\1-Wep\\QuickSite(AcademicWebsiteBuilder)\\backend\\Quicksite.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

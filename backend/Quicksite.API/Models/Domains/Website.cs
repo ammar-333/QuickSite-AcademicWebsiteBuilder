@@ -5,11 +5,7 @@ namespace Quicksite.API.Models.Domains
     public class Website
     {
         public Guid WebsiteId { get; set; }
-
-        public Guid CustomerId { get; set; }
-
-        public Guid? TemplateId { get; set; }
-
+        public string AppUserId { get; set; } = null!;
         public string Name { get; set; } = null!;
 
         public string HostUrl { get; set; } = null!;
@@ -22,8 +18,7 @@ namespace Quicksite.API.Models.Domains
 
         public DateTime? LastModified { get; set; }
         [JsonIgnore]
-        public virtual Customer Customer { get; set; } = null!;
+        public virtual AppUser AppUser { get; set; } = null!;
 
-        public virtual Template? Template { get; set; }
     }
 }

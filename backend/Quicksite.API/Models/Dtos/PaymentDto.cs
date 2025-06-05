@@ -1,4 +1,5 @@
-﻿using Quicksite.API.Models.Domains;
+﻿using System.Text.Json.Serialization;
+using Quicksite.API.Models.Domains;
 
 namespace Quicksite.API.Models.Dtos
 {
@@ -11,7 +12,7 @@ namespace Quicksite.API.Models.Dtos
         public string Status { get; set; } = null!;
 
         public string? PaymentHistory { get; set; }
-
-        public virtual Customer Customer { get; set; } = null!;
+        [JsonIgnore]
+        public virtual AppUser AppUser { get; set; } = null!;
     }
 }

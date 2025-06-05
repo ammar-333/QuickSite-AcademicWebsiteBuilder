@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
-// {
-//   "customerEmail": "user@example.com",
-//   "customerName": "string",
-//   "customerPass": "stringst",
-//   "college": "string",
-//   "major": "string"
-// }
+import Swal from "sweetalert2";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -16,41 +8,51 @@ const Signup = () => {
     customerEmail: "",
     customerName: "",
     customerPass: "",
-    collage: "",
+    college: "",
     major: "",
-    confirmPassword: "",
+    googleScholar: null,
   });
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch(
+        "/api/Customer/Register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    if (formData.customerPass !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-    console.log(formData);
-    // Add backend/API logic here
-    fetch("https://localhost:7138/api/Customer/Register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      // .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-        return;
+      const resText = await response.text();
+
+      if (!response.ok) {
+        throw new Error(resText);
+      }
+
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: resText,
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false,
       });
-
-    // navigate("/dashboard");
+      setTimeout(() => {
+        navigate('/login')
+      }, 1500);
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error", err.message, "error");
+    }
   };
 
   return (
@@ -83,7 +85,7 @@ const Signup = () => {
               Email
             </label>
             <input
-              type="customerEmail"
+              type="email"
               name="customerEmail"
               required
               value={formData.customerEmail}
@@ -100,8 +102,8 @@ const Signup = () => {
             </label>
             <input
               type="text"
-              name="collage"
-              value={formData.age}
+              name="college"
+              value={formData.college}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="JUST"
@@ -116,10 +118,25 @@ const Signup = () => {
             <input
               type="text"
               name="major"
-              value={formData.fullName}
+              value={formData.major}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Computer science"
+            />
+          </div>
+
+          {/* googleScholar */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              google Scholar URL
+            </label>
+            <input
+              type="text"
+              name="googleScholar"
+              placeholder="https://scholar.google.com/..."
+              value={formData.googleScholar}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
@@ -139,21 +156,7 @@ const Signup = () => {
             />
           </div>
 
-          {/* Confirm Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              required
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="••••••••"
-            />
-          </div>
+          
 
           {/* Submit Button */}
           <button
@@ -163,7 +166,6 @@ const Signup = () => {
             Create Account
           </button>
         </form>
-
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <a href="/login" className="text-indigo-600 hover:underline">

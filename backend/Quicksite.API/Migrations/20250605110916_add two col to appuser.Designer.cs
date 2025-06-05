@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quicksite.API.Data;
 
@@ -11,9 +12,11 @@ using Quicksite.API.Data;
 namespace Quicksite.API.Migrations
 {
     [DbContext(typeof(QuicksiteDbContext))]
-    partial class QuicksiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250605110916_add two col to appuser")]
+    partial class addtwocoltoappuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,6 +158,26 @@ namespace Quicksite.API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Quicksite.API.Models.Domains.AcademicProfile", b =>
+                {
+                    b.Property<Guid>("AcademicProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("GoogleScholarUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AcademicProfileId");
+
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
+
+                    b.ToTable("AcademicProfiles");
+                });
+
             modelBuilder.Entity("Quicksite.API.Models.Domains.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -232,6 +255,40 @@ namespace Quicksite.API.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Quicksite.API.Models.Domains.Customer", b =>
+                {
+                    b.Property<Guid>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("College")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Major")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Quicksite.API.Models.Domains.Payment", b =>
                 {
                     b.Property<Guid>("PaymentId")
@@ -241,9 +298,8 @@ namespace Quicksite.API.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PaymentHistory")
                         .HasColumnType("nvarchar(max)");
@@ -254,10 +310,24 @@ namespace Quicksite.API.Migrations
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("AppUserId")
+                    b.HasIndex("CustomerId")
                         .IsUnique();
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Quicksite.API.Models.Domains.Template", b =>
+                {
+                    b.Property<Guid>("TemplateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TemplateId");
+
+                    b.ToTable("Templates");
                 });
 
             modelBuilder.Entity("Quicksite.API.Models.Domains.Website", b =>
@@ -266,12 +336,11 @@ namespace Quicksite.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("HostUrl")
                         .IsRequired()
@@ -287,13 +356,18 @@ namespace Quicksite.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("TemplateId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Theme")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("WebsiteId");
 
-                    b.HasIndex("AppUserId")
+                    b.HasIndex("CustomerId")
                         .IsUnique();
+
+                    b.HasIndex("TemplateId");
 
                     b.ToTable("Websites");
                 });
@@ -349,30 +423,61 @@ namespace Quicksite.API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Quicksite.API.Models.Domains.Payment", b =>
+            modelBuilder.Entity("Quicksite.API.Models.Domains.AcademicProfile", b =>
                 {
-                    b.HasOne("Quicksite.API.Models.Domains.AppUser", "AppUser")
-                        .WithOne("Payment")
-                        .HasForeignKey("Quicksite.API.Models.Domains.Payment", "AppUserId")
+                    b.HasOne("Quicksite.API.Models.Domains.Customer", "Customer")
+                        .WithOne("AcademicProfile")
+                        .HasForeignKey("Quicksite.API.Models.Domains.AcademicProfile", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Quicksite.API.Models.Domains.Customer", b =>
+                {
+                    b.HasOne("Quicksite.API.Models.Domains.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Quicksite.API.Models.Domains.Payment", b =>
+                {
+                    b.HasOne("Quicksite.API.Models.Domains.Customer", "Customer")
+                        .WithOne("Payment")
+                        .HasForeignKey("Quicksite.API.Models.Domains.Payment", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Quicksite.API.Models.Domains.Website", b =>
                 {
-                    b.HasOne("Quicksite.API.Models.Domains.AppUser", "AppUser")
+                    b.HasOne("Quicksite.API.Models.Domains.Customer", "Customer")
                         .WithOne("Website")
-                        .HasForeignKey("Quicksite.API.Models.Domains.Website", "AppUserId")
+                        .HasForeignKey("Quicksite.API.Models.Domains.Website", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.HasOne("Quicksite.API.Models.Domains.Template", "Template")
+                        .WithMany()
+                        .HasForeignKey("TemplateId");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Template");
                 });
 
-            modelBuilder.Entity("Quicksite.API.Models.Domains.AppUser", b =>
+            modelBuilder.Entity("Quicksite.API.Models.Domains.Customer", b =>
                 {
+                    b.Navigation("AcademicProfile")
+                        .IsRequired();
+
                     b.Navigation("Payment");
 
                     b.Navigation("Website");

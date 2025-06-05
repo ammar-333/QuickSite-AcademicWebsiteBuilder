@@ -1,25 +1,39 @@
 import React, { useState } from "react";
 import profileImg from "../assets/blankProfilePicture.png";
 
-const Account = () => {
+const Account = (props) => {
   const [isEditing, setEdidting] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "ahmed",
-    email: "ahmed@gmail.com",
-    collage: "JUST",
-    major: "CS",
+    CustomerName: props.info.username,
+    CustomerEmail: props.info.email,
+    major: props.info.major,
+    college:  props.info.college,
+    googleScholar: props.info.googleScholar,
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setEdidting(false)
-    console.log("Signing up with:", formData);
+    setEdidting(false);
     // Add backend/API logic here
-  };
+    const response = await fetch(`/api/Customer/${props.info.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error("Update failed:", error);
+    } else {
+      console.log("Update successful:");
+    }
+  }
 
   return (
     <div className="w-full min-h-screen bg-gray-200 px-4">
@@ -38,16 +52,16 @@ const Account = () => {
           <div className="flex-1">
             {isEditing ? (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Full Name */}
+                {/* Customer Name */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
                   </label>
                   <input
                     type="text"
-                    name="fullName"
+                    name="CustomerName"
                     required
-                    value={formData.fullName}
+                    value={formData.CustomerName}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
@@ -60,9 +74,9 @@ const Account = () => {
                   </label>
                   <input
                     type="email"
-                    name="email"
+                    name="CustomerEmail"
                     required
-                    value={formData.email}
+                    value={formData.CustomerEmail}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
@@ -75,8 +89,8 @@ const Account = () => {
                   </label>
                   <input
                     type="text"
-                    name="collage"
-                    value={formData.collage}
+                    name="college"
+                    value={formData.college}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
@@ -96,6 +110,20 @@ const Account = () => {
                   />
                 </div>
 
+                {/* googleScholar */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    google scholar URL
+                  </label>
+                  <input
+                    type="text"
+                    name="googleScholar"
+                    value={formData.googleScholar}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                </div>
+
                 {/* Submit Button */}
                 <button
                   type="submit"
@@ -107,11 +135,14 @@ const Account = () => {
             ) : (
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">
-                  {formData.fullName}
+                  {formData.CustomerName}
                 </h2>
-                <p className="text-gray-500">Email: {formData.email}</p>
-                <p className="text-gray-500">Collage: {formData.collage}</p>
+                <p className="text-gray-500">Email: {formData.CustomerEmail}</p>
+                <p className="text-gray-500">Collage: {formData.college}</p>
                 <p className="text-gray-500">Major: {formData.major}</p>
+                <p className="text-gray-500">
+                  googleScholar URL: {formData.googleScholar}
+                </p>
 
                 <button
                   onClick={() => {
@@ -137,16 +168,15 @@ const Account = () => {
           <ul className="space-y-2">
             <li className="flex justify-between items-center">
               <span className="text-gray-700">Dashboard</span>
-              <a
-                href="/dashboard"
-                className="text-indigo-600 hover:underline"
-              >
+              <a href="/dashboard" className="text-indigo-600 hover:underline">
                 Dashboard url
               </a>
             </li>
             <li className="flex justify-between items-center">
               <span className="text-gray-700">Website</span>
-              <a href="#" className="text-indigo-600 hover:underline">Website url</a>
+              <a href="#" className="text-indigo-600 hover:underline">
+                Website url
+              </a>
             </li>
           </ul>
         </div>

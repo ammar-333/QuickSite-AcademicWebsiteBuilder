@@ -66,9 +66,9 @@ const ShowTemplate = () => {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <nav className="h-13 w-full bg-gray-400 fixed z-10 text-amber-300">
-        <Link to={"/template"}>
-          <p className="font-extrabold text-2xl text-black m-2 ml-10 hover:cursor-pointer">
+      <nav className="h-13 w-full bg-white fixed z-10 text-amber-300 border-b-2  border-b-gray-400">
+        <Link to={"/dashboard"}>
+          <p className="font-extrabold text-2xl text-black m-2 ml-10 hover:cursor-pointer text-left">
             <span className="text-blue-800">Quick</span>Site
           </p>
         </Link>
@@ -76,7 +76,7 @@ const ShowTemplate = () => {
       {/* Sidebar */}
       <aside className="w-1/4 bg-white border-r border-gray-200 shadow-lg mt-12 min-h-screen flex flex-col overflow-y-auto pb-20">
         {/* Header Section */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-6 border-b bg-gradient-to-r from-purple-300 to-indigo-300 border-gray-200">
           <p className="font-extrabold text-3xl text-gray-800 mb-4">
             🎨 Design Wiz
           </p>
@@ -86,8 +86,7 @@ const ShowTemplate = () => {
           >
             Apply design to existing site
           </button>
-          <p className="font-semibold text-lg text-gray-700">Themes</p>
-          <hr className="mt-2 border-gray-300" />
+          <p className=" text-gray-700 font-bold text-3xl pt-5 ml-25 text-gray-800">Themes</p>
         </div>
 
         {/* Theme List Section */}
@@ -110,7 +109,7 @@ const ShowTemplate = () => {
                 </p>
                 <button
                   onClick={() => setWebsite(theme.image)}
-                  className="bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-700 transition-all"
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:hover:scale-[1.03] transition-all"
                 >
                   Set as theme
                 </button>

@@ -1,4 +1,5 @@
-﻿using Quicksite.API.Models.Domains;
+﻿using System.Text.Json.Serialization;
+using Quicksite.API.Models.Domains;
 
 namespace Quicksite.API.Models.Dtos
 {
@@ -18,8 +19,7 @@ namespace Quicksite.API.Models.Dtos
 
         public DateTime? LastModified { get; set; }
 
-        public virtual Customer Customer { get; set; } = null!;
-
-        public virtual Template? Template { get; set; }
+        [JsonIgnore]
+        public virtual AppUser AppUser { get; set; } = null!;
     }
 }

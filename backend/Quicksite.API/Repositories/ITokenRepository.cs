@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Quicksite.API.Models.Domains;
 
 namespace Quicksite.API.Repositories
 {
     public interface ITokenRepository
     {
-        string CreateJWTToken(IdentityUser user);
+        string CreateJWTToken(AppUser user);
 
     }
 }

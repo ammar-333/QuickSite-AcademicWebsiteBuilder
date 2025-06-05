@@ -1,20 +1,63 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [token, setToken] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Logging in with", formData);
-    // Add backend/API logic here
-    navigate('/dashboard')
+
+    try {
+      const response = await fetch('/api/Customer/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: errorText || 'Invalid email or password',
+        });
+        return;
+      }
+
+      const data = await response.json();
+      setToken(data.jwtToken);
+      console.log('JWT Token:', data.jwtToken);
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        text: 'Welcome!',
+        timer: 1500,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+      setTimeout(() => {
+        navigate('/dashboard')
+      }, 1500);
+
+      // Optionally save token for future requests
+      localStorage.setItem('token', data.jwtToken);
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.message || 'Something went wrong',
+      });
+    }
   };
 
 
@@ -25,7 +68,7 @@ const Login = () => {
         Log in to QuickSite
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleLogin} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Email

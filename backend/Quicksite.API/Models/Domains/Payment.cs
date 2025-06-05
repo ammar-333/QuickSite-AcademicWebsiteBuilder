@@ -6,7 +6,7 @@ namespace Quicksite.API.Models.Domains
     {
         public Guid PaymentId { get; set; }
 
-        public Guid CustomerId { get; set; }
+        public string AppUserId { get; set; } = null!;
 
         public decimal Amount { get; set; }
 
@@ -15,6 +15,6 @@ namespace Quicksite.API.Models.Domains
         public string? PaymentHistory { get; set; }
 
         [JsonIgnore]
-        public virtual Customer Customer { get; set; } = null!;
+        public virtual AppUser AppUser { get; set; } = null!;
     }
 }

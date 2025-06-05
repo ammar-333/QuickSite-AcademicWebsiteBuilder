@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Quicksite.API.Models.Domains;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,12 +17,19 @@ namespace Quicksite.API.Repositories
         }
 
 
-        public string CreateJWTToken(IdentityUser user)
+        public string CreateJWTToken(AppUser user)
         {
             //Create claims
-            var claims = new List<Claim>();
-
-            claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Name, user.UserName ?? ""),
+                new Claim(ClaimTypes.Email, user.Email ?? ""),
+                new Claim(ClaimTypes.Name, user.Major ?? ""),
+                new Claim(ClaimTypes.Name, user.College ?? ""),
+                new Claim(ClaimTypes.Name, user.googleScholar ?? ""),
+                new Claim(ClaimTypes.Name, user.isWebsiteCreated ?? ""),
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
 

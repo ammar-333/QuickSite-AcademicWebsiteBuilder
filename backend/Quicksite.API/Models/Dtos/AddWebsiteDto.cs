@@ -6,9 +6,7 @@ namespace Quicksite.API.Models.Dtos
     public class AddWebsiteDto
     {
         [Required]
-        public Guid CustomerId { get; set; }
-
-        public Guid? TemplateId { get; set; }
+        public string AppUserId { get; set; } = null!;
 
         [Required]
         [StringLength(50)]

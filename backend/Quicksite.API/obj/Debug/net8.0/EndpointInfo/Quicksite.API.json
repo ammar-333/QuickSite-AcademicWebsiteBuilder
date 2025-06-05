@@ -5,131 +5,6 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/AcademicProfile": {
-      "get": {
-        "tags": [
-          "AcademicProfile"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "AcademicProfile"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAcademicProfileDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAcademicProfileDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAcademicProfileDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/AcademicProfile/{id}": {
-      "get": {
-        "tags": [
-          "AcademicProfile"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "AcademicProfile"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAcademicProfileDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAcademicProfileDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAcademicProfileDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "AcademicProfile"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Customer": {
       "get": {
         "tags": [
@@ -142,82 +17,10 @@
         }
       }
     },
-    "/api/Customer/{id}": {
+    "/api/Customer/profile": {
       "get": {
         "tags": [
           "Customer"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Customer"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCustomerDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCustomerDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCustomerDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Customer"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -288,6 +91,69 @@
         }
       }
     },
+    "/api/Customer/{id}": {
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomerDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomerDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Payment": {
       "get": {
         "tags": [
@@ -351,174 +217,9 @@
           }
         }
       },
-      "put": {
-        "tags": [
-          "Payment"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePaymentDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePaymentDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePaymentDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
       "delete": {
         "tags": [
           "Payment"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Template": {
-      "get": {
-        "tags": [
-          "Template"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Template"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddTemplateDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddTemplateDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddTemplateDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Template/{id}": {
-      "get": {
-        "tags": [
-          "Template"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Template"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTemplateDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTemplateDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTemplateDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Template"
         ],
         "parameters": [
           {
@@ -700,25 +401,6 @@
   },
   "components": {
     "schemas": {
-      "AddAcademicProfileDto": {
-        "required": [
-          "customerId",
-          "googleScholarUrl"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "googleScholarUrl": {
-            "minLength": 1,
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "additionalProperties": false
-      },
       "AddCustomerDto": {
         "required": [
           "customerEmail",
@@ -748,6 +430,10 @@
           "major": {
             "type": "string",
             "nullable": true
+          },
+          "googleScholar": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -755,14 +441,14 @@
       "AddPaymentDto": {
         "required": [
           "amount",
-          "customerId",
+          "appUserId",
           "status"
         ],
         "type": "object",
         "properties": {
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
+          "appUserId": {
+            "minLength": 1,
+            "type": "string"
           },
           "amount": {
             "type": "number",
@@ -780,34 +466,17 @@
         },
         "additionalProperties": false
       },
-      "AddTemplateDto": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AddWebsiteDto": {
         "required": [
-          "customerId",
+          "appUserId",
           "hostUrl",
           "name"
         ],
         "type": "object",
         "properties": {
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "templateId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
+          "appUserId": {
+            "minLength": 1,
+            "type": "string"
           },
           "name": {
             "maxLength": 50,
@@ -864,30 +533,10 @@
         },
         "additionalProperties": false
       },
-      "UpdateAcademicProfileDto": {
-        "required": [
-          "customerId",
-          "googleScholarUrl"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "googleScholarUrl": {
-            "minLength": 1,
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "additionalProperties": false
-      },
       "UpdateCustomerDto": {
         "required": [
           "customerEmail",
-          "customerName",
-          "customerPass"
+          "customerName"
         ],
         "type": "object",
         "properties": {
@@ -901,10 +550,6 @@
             "minLength": 0,
             "type": "string"
           },
-          "customerPass": {
-            "minLength": 8,
-            "type": "string"
-          },
           "college": {
             "type": "string",
             "nullable": true
@@ -912,44 +557,8 @@
           "major": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdatePaymentDto": {
-        "required": [
-          "amount",
-          "customerId",
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
           },
-          "amount": {
-            "type": "number",
-            "format": "double"
-          },
-          "status": {
-            "minLength": 1,
-            "pattern": "Success|Pending|Failed",
-            "type": "string"
-          },
-          "paymentHistory": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateTemplateDto": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
+          "googleScholar": {
             "type": "string",
             "nullable": true
           }
@@ -958,20 +567,15 @@
       },
       "UpdateWebsiteDto": {
         "required": [
-          "customerId",
+          "appUserId",
           "hostUrl",
           "name"
         ],
         "type": "object",
         "properties": {
-          "customerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "templateId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
+          "appUserId": {
+            "minLength": 1,
+            "type": "string"
           },
           "name": {
             "maxLength": 50,

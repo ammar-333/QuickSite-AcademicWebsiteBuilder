@@ -27,7 +27,7 @@ namespace Quicksite.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
             [FromQuery] int pageNumber = 1, [FromQuery] int PageSize = 10)
         {
-            var Website = dbContext.Websites.Include("Template").Include("Customer").AsQueryable();
+            var Website = dbContext.Websites.Include(w => w.AppUser).AsQueryable();
 
             //filtering
             if (string.IsNullOrWhiteSpace(filterQuery) == false && string.IsNullOrWhiteSpace(filterOn) == false)
@@ -55,7 +55,7 @@ namespace Quicksite.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetBuId([FromRoute] Guid id)
         {
-            var WebsiteModel = await dbContext.Websites.Include("Template").Include("Customer").FirstOrDefaultAsync(x => x.WebsiteId == id);
+            var WebsiteModel = await dbContext.Websites.Include(w => w.AppUser).FirstOrDefaultAsync(x => x.WebsiteId == id);
 
             if (WebsiteModel == null)
                 return NotFound();
@@ -100,7 +100,6 @@ namespace Quicksite.API.Controllers
             WebsiteModel.Theme = updateWebsiteDto.Theme;
             WebsiteModel.CreationDate = updateWebsiteDto.CreationDate;
             WebsiteModel.LastModified = updateWebsiteDto.LastModified;
-            WebsiteModel.TemplateId = updateWebsiteDto.TemplateId;
 
             await dbContext.SaveChangesAsync();
 

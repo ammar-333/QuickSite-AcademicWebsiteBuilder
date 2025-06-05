@@ -5,7 +5,7 @@ namespace Quicksite.API.Models.Dtos
     public class AddPaymentDto
     {
         [Required]
-        public Guid CustomerId { get; set; }
+        public string AppUserId { get; set; } = null!;
 
         [Required]
         public decimal Amount { get; set; }

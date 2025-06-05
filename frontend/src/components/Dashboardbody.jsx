@@ -3,15 +3,16 @@ import {
   Plus,
   Grid,
   ListFilter,
+  LogIn,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const Dashboardbody = () => {
-  const sites = { name: "ammar", status: "Not published" };
-  const [isWebsiteCreated, setWebsiteCrested] = useState(false);
+const Dashboardbody = (props) => {
+  const sites = { name: props.info.username, status: "Not published" };
+  const isWebsiteCreated = props.info.isWebsiteCreated;
   const navigate = useNavigate();
-
+  
   return (
     <main className="flex-1 p-6 bg-gray-200  flex justify-center">
         <div className="bg-gray-50 p-8 w-[86%] mt-5 mb-56 rounded-2xl">
