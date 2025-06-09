@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Quicksite.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d206ea9b9eea77f1384f1c17538a7764c97f311")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e48185869b75ca63dd9f70a2b6b01efc0f97866")]
 [assembly: System.Reflection.AssemblyProductAttribute("Quicksite.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Quicksite.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

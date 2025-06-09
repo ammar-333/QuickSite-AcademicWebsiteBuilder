@@ -203,6 +203,12 @@ namespace Quicksite.API.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ScholarJson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ScholarPdf")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -277,6 +283,10 @@ namespace Quicksite.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HtmlContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
@@ -284,6 +294,10 @@ namespace Quicksite.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

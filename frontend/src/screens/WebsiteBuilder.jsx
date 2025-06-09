@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const WebsiteBuilder = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token");
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -17,14 +19,55 @@ const WebsiteBuilder = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     // TODO: Send formData to your AI builder logic/backend
-    console.log("Generating website with:", formData);
+    try {
+      setLoading(true);
 
-    setLoading(true);
-    setTimeout(() => {
-      navigate("/editwebsite");
-    }, 7000);
+      const res1 = await fetch(
+        `/api/Customer/scholar-json-url?scholarUrl=${encodeURIComponent(
+          formData.googleScholar
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!res1.ok) {
+        throw new Error(`Server error: ${res1.status}`);
+      }
+
+      const data1 = await res1.json();
+      console.log(data1);
+
+      /////////////////////////////////////////////////////////////////*/////////////////////////////////////
+
+      const res2 = await fetch("/api/Website/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res2.ok) {
+        throw new Error("Failed to generate website");
+      }
+ 
+      const data2 = await res2.json();
+      console.log(data2.message);
+      console.log(data2.url);
+
+      window.open(data2.url, '_blank');
+      navigate("/dashboard");
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+      Swal.fire("Error", ` Please enter your Google Scholar URL.`, "error");
+    }
   };
 
   return (
@@ -119,6 +162,7 @@ const WebsiteBuilder = () => {
                 <textarea
                   name="googleScholar"
                   placeholder="https://scholar.google.com/..."
+                  required
                   rows="2"
                   className="w-full border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-xl px-4 py-2 transition"
                   value={formData.publications}

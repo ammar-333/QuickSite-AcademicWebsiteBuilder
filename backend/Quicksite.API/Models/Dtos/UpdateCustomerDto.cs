@@ -18,5 +18,7 @@ namespace Quicksite.API.Models.Dtos
 
         public string? googleScholar { get; set; }
 
+        public string? isWebsiteCreated { get; set; }
+
     }
 }

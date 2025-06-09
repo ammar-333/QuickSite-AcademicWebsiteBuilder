@@ -89,6 +89,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Quicksite.API.Controllers.CustomerController",
+    "Method": "SaveScholar",
+    "RelativePath": "api/Customer/scholar-json-url",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scholarUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Quicksite.API.Controllers.PaymentController",
     "Method": "GetAll",
     "RelativePath": "api/Payment",
@@ -241,6 +257,48 @@
       {
         "Name": "id",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Quicksite.API.Controllers.WebsiteController",
+    "Method": "GetBySlug",
+    "RelativePath": "api/Website/{slug}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Quicksite.API.Controllers.WebsiteController",
+    "Method": "GenerateWebsite",
+    "RelativePath": "api/Website/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Quicksite.API.Controllers.WebsiteController",
+    "Method": "GetByUserId",
+    "RelativePath": "api/Website/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Quicksite.API.Repositories;
 using Quicksite.API.Services;
 using Quicksite.API.Models.Domains;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +17,35 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1", new() { Title = "QuickSite API", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        In = ParameterLocation.Header,
+        Description = "Enter ‘Bearer {token}’"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    {
+      new OpenApiSecurityScheme {
+        Reference = new OpenApiReference {
+          Type = ReferenceType.SecurityScheme,
+          Id   = "Bearer"
+        }
+      },
+      new string[] { }
+    }
+  });
+});
+
 
 // Allow react Frontend to access via port number
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        Policy => Policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+        builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
 //Debendency injection to DbContext class
@@ -71,8 +94,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<ScholarService>();
 builder.Services.AddScoped<ScholarService>();
+
+builder.Services.AddHttpClient<OpenAIService>();
+builder.Services.AddScoped<OpenAIService>();
+
 
 var app = builder.Build();
 

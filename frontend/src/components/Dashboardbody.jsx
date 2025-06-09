@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Plus,
   Grid,
@@ -9,10 +9,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const Dashboardbody = (props) => {
-  const sites = { name: props.info.username, status: "Not published" };
   const isWebsiteCreated = props.info.isWebsiteCreated;
+  const websiteName = props.info2.name;
+  const websiteUrl = props.info2.hostUrl;
+  const sites = { name: websiteName, status: "Not published" };
   const navigate = useNavigate();
-  
+
   return (
     <main className="flex-1 p-6 bg-gray-200  flex justify-center">
         <div className="bg-gray-50 p-8 w-[86%] mt-5 mb-56 rounded-2xl">
@@ -52,13 +54,11 @@ const Dashboardbody = (props) => {
 
             {isWebsiteCreated ? 
           <div className="grid grid-cols-2 gap-6">
-              <Link to="#">
-              <div className="bg-white rounded-xl shadow p-4 max-w-80 border-1 border-white hover:border-blue-800 hover:cursor-pointer">
+              <div  onClick={() => window.open(websiteUrl, '_blank')} className="bg-white rounded-xl shadow p-4 max-w-80 border-1 border-white hover:border-blue-800 hover:cursor-pointer">
                 <div className="h-32 bg-blue-100 rounded mb-4 flex items-center justify-center text-blue-400 bg-[url(./assets/no-image.jpg)] bg-contain bg-center bg-no-repeat"></div>
                 <h3 className="text-sm font-medium">{sites.name}</h3>
                 <p className="text-xs text-gray-500">{sites.status}</p>
               </div>
-              </Link>
           </div>
               :
               <div className="text-center text-3xl mt-18">

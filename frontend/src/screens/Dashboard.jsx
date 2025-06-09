@@ -18,19 +18,44 @@ const Dashboard = () => {
   const [body, setBody] = useState("dashboard");
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const [data2, setData2] = useState({});
+  let userId;
+  let isWebsite;
+  let websiteName;
+  let websiteUrl;
 
-  useEffect(() => {
+  const fun = async () => {
     const token = localStorage.getItem("token");
-    fetch("/api/Customer/profile", {
+    await fetch("/api/Customer/profile", {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
+        userId = data.id;
+        isWebsite = data.isWebsiteCreated;
         setData(data);
       });
+
+    //////////////////////////////////////////////////////////////////////
+
+    if (isWebsite) {
+      await fetch(`/api/Website/user/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          websiteName = data.name;
+          websiteUrl = data.hostUrl;
+          setData2(data);
+          console.log(data)
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  useEffect(() => {
+    fun();
   }, []);
 
   return (
@@ -69,7 +94,7 @@ const Dashboard = () => {
         </nav>
       </aside>
 
-      {body ? <Dashboardbody info={data} /> : <Account info={data}/>}
+      {body ? <Dashboardbody info={data} info2={data2} /> : <Account info={data} />}
     </div>
   );
 };

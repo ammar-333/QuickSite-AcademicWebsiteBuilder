@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Quicksite.API",
-    "version": "1.0"
+    "title": "QuickSite API",
+    "version": "v1"
   },
   "paths": {
     "/api/Customer": {
@@ -84,6 +84,27 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Customer/scholar-json-url": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "name": "scholarUrl",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -397,6 +418,62 @@
           }
         }
       }
+    },
+    "/api/Website/user/{userId}": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Website/generate": {
+      "post": {
+        "tags": [
+          "Website"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Website/{slug}": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -561,6 +638,10 @@
           "googleScholar": {
             "type": "string",
             "nullable": true
+          },
+          "isWebsiteCreated": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -612,6 +693,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Enter ‘Bearer {token}’",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

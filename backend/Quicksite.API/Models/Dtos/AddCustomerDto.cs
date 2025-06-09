@@ -20,6 +20,5 @@ namespace Quicksite.API.Models.Dtos
 
         public string? Major { get; set; }
         public string? googleScholar { get; set; }
-
     }
 }

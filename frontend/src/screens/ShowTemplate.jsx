@@ -1,68 +1,98 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import websiteTemplate from "../assets/websiteTemplate.png";
+import Swal from 'sweetalert2';
+import web1 from "../assets/web1.png";
+import web2 from "../assets/web2.png";
+import web3 from "../assets/web3.png";
+import web4 from "../assets/web4.png";
+import web5 from "../assets/web5.png";
+import web6 from "../assets/web6.png";
+import web7 from "../assets/web7.png";
+
+import Web1 from "../templates/Web1";
+import Web2 from "../templates/Web2";
+import Web3 from "../templates/Web3";
+import Web4 from "../templates/Web4";
+import Web5 from "../templates/Web5";
+import Web6 from "../templates/Web6";
 
 const themes = [
   {
     name: "Albert Einstein",
     role: "Physicist",
     university: "University of Zurich",
-    image: `${websiteTemplate}`,
+    image: `${web1}`,
   },
   {
     name: "Jane Jacobs",
     role: "Urban Theorist",
     university: "Columbia University",
-    image: `${websiteTemplate}`,
+    image: `${web2}`,
   },
   {
     name: "Alan Turing",
     role: "Computer Scientist",
     university: "Princeton University",
-    image: `${websiteTemplate}`,
+    image: `${web3}`,
   },
   {
     name: "Albert Einstein",
     role: "Physicist",
     university: "University of Zurich",
-    image: `${websiteTemplate}`,
+    image: `${web4}`,
   },
   {
     name: "Jane Jacobs",
     role: "Urban Theorist",
     university: "Columbia University",
-    image: `${websiteTemplate}`,
+    image: `${web5}`,
   },
   {
     name: "Alan Turing",
     role: "Computer Scientist",
     university: "Princeton University",
-    image: `${websiteTemplate}`,
-  },
-  {
-    name: "Albert Einstein",
-    role: "Physicist",
-    university: "University of Zurich",
-    image: `${websiteTemplate}`,
-  },
-  {
-    name: "Jane Jacobs",
-    role: "Urban Theorist",
-    university: "Columbia University",
-    image: `${websiteTemplate}`,
-  },
-  {
-    name: "Alan Turing",
-    role: "Computer Scientist",
-    university: "Princeton University",
-    image: `${websiteTemplate}`,
+    image: `${web6}`,
   },
 ];
 
+const renderCase = (num) => {
+  switch (num) {
+    case 1:
+      return <Web1 />;
+    case 2:
+      return <Web2 />;
+    case 3:
+      return <Web3 />;
+    case 4:
+      return <Web4 />;
+    case 5:
+      return <Web5 />;
+    case 6:
+      return <Web6 />;
+  }
+};
+
 const ShowTemplate = () => {
   const [Edit, setEdit] = useState(false);
-  const [website, setWebsite] = useState();
+  const [website, setWebsite] = useState(0);
   const navigate = useNavigate();
+
+  const handlebtn = () => {
+    if (website == 0) {
+      Swal.fire({
+      title: 'error',
+      text: 'You have to select a Template',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+    } else {
+      const dataToSend = {
+        websiteId: { website },
+        style: "template"
+      };
+      navigate("/editwebsite", { state: dataToSend });
+    }
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -81,12 +111,14 @@ const ShowTemplate = () => {
             🎨 Design Wiz
           </p>
           <button
-            onClick={() => navigate("/editwebsite")}
+            onClick={handlebtn}
             className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold px-4 py-2 rounded-xl shadow hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 mb-6"
           >
             Apply design to existing site
           </button>
-          <p className=" text-gray-700 font-bold text-3xl pt-5 ml-25 text-gray-800">Themes</p>
+          <p className=" text-gray-700 font-bold text-3xl pt-5 ml-25 text-gray-800">
+            Themes
+          </p>
         </div>
 
         {/* Theme List Section */}
@@ -108,7 +140,7 @@ const ShowTemplate = () => {
                   {theme.name}
                 </p>
                 <button
-                  onClick={() => setWebsite(theme.image)}
+                  onClick={() => setWebsite(index + 1)}
                   className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:hover:scale-[1.03] transition-all"
                 >
                   Set as theme
@@ -120,8 +152,8 @@ const ShowTemplate = () => {
       </aside>
 
       {/* Preview Section */}
-      <main className="flex-1 p-8 overflow-y-auto bg-gray-300 mt-10">
-        <img src={website} />
+      <main className="flex-1 overflow-y-auto bg-gray-300 mt-13 mb-0">
+        {renderCase(website)}
       </main>
     </div>
   );

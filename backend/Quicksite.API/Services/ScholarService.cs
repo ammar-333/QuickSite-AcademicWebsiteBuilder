@@ -1,33 +1,69 @@
-﻿using System.Net.Http;
-using System.Text.Json;
+﻿using System;
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
+using Microsoft.AspNetCore.WebUtilities;
+using Quicksite.API.Models.Domains;
+using Microsoft.AspNetCore.Identity;
 
 namespace Quicksite.API.Services
 {
     public class ScholarService
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;
+        private readonly string _apiKey = "b0e3a608a96eb4d78b6681063397eada8d320cf5f144f4282563c6bf2fa2fb19";
 
-        public ScholarService(HttpClient httpClient, IConfiguration configuration)
+        public ScholarService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _configuration = configuration;
         }
 
-        public async Task<string?> GetScholarProfileAsync(string authorName)
+        public string GetScholarApiUrl(string authorId)
         {
-            string apiKey = _configuration["SerpApi:Key"];
+            return $"https://serpapi.com/search.json?engine=google_scholar_author&author_id={authorId}&hl=en&start=0&num=20&api_key={_apiKey}";
+        }
 
-            var url = $"https://serpapi.com/search.json?engine=google_scholar_profiles&q={authorName}&api_key={apiKey}";
+        public Task<string> FetchScholarJsonAsync(string scholarApiUrl)
+         => _httpClient.GetStringAsync(scholarApiUrl);
 
-            var response = await _httpClient.GetAsync(url);
+        public byte[] ConvertJsonToPdf(string json)
+        {
+            var doc = new PdfDocument();
+            var page = doc.AddPage();
+            var gfx = XGraphics.FromPdfPage(page);
+            var font = new XFont("Verdana", 10);
 
-            if (!response.IsSuccessStatusCode) return null;
+            var rect = new XRect(20, 20, page.Width - 40, page.Height - 40);
+            gfx.DrawString(json, font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-            var result = await response.Content.ReadAsStringAsync();
-            return result;
+            using var ms = new MemoryStream();
+            doc.Save(ms, false);
+            return ms.ToArray();
+        }
+
+        /// <summary>
+        /// Fetch the scholar JSON, convert to PDF, and update the AppUser entity.
+        /// </summary>
+        public async Task SaveScholarProfileAsync(AppUser user, string scholarUrl, UserManager<AppUser> userManager)
+        {
+            // 1) Extract author ID
+            var uri = new Uri(scholarUrl);
+            var query = QueryHelpers.ParseQuery(uri.Query);
+            var authorId = query["user"].ToString();
+            if (string.IsNullOrWhiteSpace(authorId))
+                throw new ArgumentException("Missing user= ID in Google Scholar URL");
+
+            // 2) Fetch JSON
+            var json = await FetchScholarJsonAsync(GetScholarApiUrl(authorId));
+
+            // 3) Store
+            user.googleScholar = scholarUrl;
+            user.ScholarJson = json;
+            user.ScholarPdf = ConvertJsonToPdf(json);
+
+            await userManager.UpdateAsync(user);
         }
     }
 }

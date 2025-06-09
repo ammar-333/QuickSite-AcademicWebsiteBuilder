@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Quicksite.API.Repositories;
 using System.Security.Claims;
+using Quicksite.API.Services;
+using System.Threading.Tasks;
 
 namespace Quicksite.API.Controllers
 {
@@ -21,13 +23,16 @@ namespace Quicksite.API.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<AppUser> userManager;
         private readonly ITokenRepository tokenRepository;
+        private readonly ScholarService _scholarService;
 
-        public CustomerController(UserManager<AppUser> userManager, ITokenRepository tokenRepository, QuicksiteDbContext dbContext, IMapper mapper)
+        public CustomerController(UserManager<AppUser> userManager, ITokenRepository tokenRepository, QuicksiteDbContext dbContext, IMapper mapper, ScholarService scholarService)
         {
             this.userManager = userManager;
             this.tokenRepository = tokenRepository;
             this.dbContext = dbContext;
             this.mapper = mapper;
+            _scholarService = scholarService;
+
         }
 
         //GetAll customers
@@ -63,7 +68,7 @@ namespace Quicksite.API.Controllers
                 Major = user.Major,
                 College = user.College,
                 googleScholar = user.googleScholar,
-                isWebsiteCreated = user.isWebsiteCreated
+                isWebsiteCreated = user.isWebsiteCreated,
             });
         }
 
@@ -80,8 +85,7 @@ namespace Quicksite.API.Controllers
                 Email = addCustomerDto.CustomerEmail,
                 College = addCustomerDto.College,
                 Major = addCustomerDto.Major,
-                googleScholar = addCustomerDto.googleScholar,
-
+                googleScholar = addCustomerDto.googleScholar
             };
 
             var identityResult = await userManager.CreateAsync(identityUser, addCustomerDto.CustomerPass);
@@ -126,6 +130,26 @@ namespace Quicksite.API.Controllers
             return BadRequest("Username or password incorrect");
         }
 
+        [Authorize]
+        [HttpGet("scholar-json-url")]
+        public async Task<IActionResult> SaveScholar([FromQuery] string scholarUrl)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null) return Unauthorized();
+
+            try
+            {
+                await _scholarService.SaveScholarProfileAsync(user, scholarUrl, userManager);
+                user.isWebsiteCreated = "true";
+                var result = await userManager.UpdateAsync(user);
+                return Ok(new { message = "Scholar profile saved." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
 
         [HttpPut]
@@ -148,6 +172,7 @@ namespace Quicksite.API.Controllers
             appUser.College = updateCustomerDto.College;
             appUser.Major = updateCustomerDto.Major;
             appUser.googleScholar = updateCustomerDto.googleScholar;
+            appUser.isWebsiteCreated = updateCustomerDto.isWebsiteCreated;
 
             var result = await userManager.UpdateAsync(appUser);
             if (!result.Succeeded)
