@@ -116,22 +116,6 @@
   },
   {
     "ContainingType": "Quicksite.API.Controllers.PaymentController",
-    "Method": "Create",
-    "RelativePath": "api/Payment",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "addPaymentDto",
-        "Type": "Quicksite.API.Models.Dtos.AddPaymentDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Quicksite.API.Controllers.PaymentController",
     "Method": "GetById",
     "RelativePath": "api/Payment/{id}",
     "HttpMethod": "GET",
@@ -148,15 +132,36 @@
   },
   {
     "ContainingType": "Quicksite.API.Controllers.PaymentController",
-    "Method": "Delete",
-    "RelativePath": "api/Payment/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "Capture",
+    "RelativePath": "api/Payment/capture/{orderId}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Guid",
+        "Name": "orderId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "orderId",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Quicksite.API.Controllers.PaymentController",
+    "Method": "Make",
+    "RelativePath": "api/Payment/make",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Quicksite.API.Models.Dtos.AddPaymentDto",
         "IsRequired": true
       }
     ],
@@ -285,7 +290,13 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Quicksite.API.Models.Dtos.GenerateRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

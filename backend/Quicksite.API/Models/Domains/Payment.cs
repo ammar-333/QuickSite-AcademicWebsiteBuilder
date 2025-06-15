@@ -12,6 +12,8 @@ namespace Quicksite.API.Models.Domains
 
         public string Status { get; set; } = null!;
 
+        public string Currency { get; set; } = "USD";
+
         public string? PaymentHistory { get; set; }
 
         [JsonIgnore]

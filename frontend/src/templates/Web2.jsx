@@ -1,107 +1,310 @@
-import React from "react";
-import background from '../assets/background.jpg'
-import image from '../assets/profile.png'
+import React, { useState } from "react";
+import background from "../assets/background.jpg";
+import image from "../assets/profile.png";
 
 const Web2 = () => {
+  const [name, setName] = useState("Albert Einstein");
+  const [roll, setRoll] = useState("Physicist at University of ZurichRämis");
+  const [img, setImg] = useState(`${image}`);
+  const [bio, setBio] = useState(
+    " Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc^2. He received the 1921 Nobel Prize in Physics for his services to theoretical physics, in particular his discovery of the law of the photoelectric effect, a pivotal step in the evolution of quantum theory."
+  );
+  const [articles, setarticles] = useState(["ammar", "ahmed", "ali"]);
+  const [interests, setInterests] = useState(["aa", "bb", "gg"]);
+  const [account, setAccount] = useState("#");
+  const token = localStorage.getItem("token");
+
   return (
-    <div style={{ backgroundColor: "#fff", color: "#333", fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif", lineHeight: 1.6, margin: 0, padding: 0 }}>
-      <header style={{ backgroundColor: "#0b8bf2", color: "white" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 2rem" }}>
-          <h1>Albert Einstein</h1>
-          <nav>
-            <ul style={{ listStyle: "none", display: "flex", gap: "1.5rem", margin: 0 }}>
-              <li><a href="#home" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>Home</a></li>
-              <li><a href="#publications" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>Publications</a></li>
-              <li><a href="#projects" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>Projects</a></li>
-              <li><a href="#search" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>Search</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div style={{ background: `url(${background}) center/cover no-repeat`, height: "250px" }}></div>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        backgroundColor: "#fff",
+        color: "#333",
+        fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
+      }}
+    >
+      <aside
+        style={{
+          backgroundColor: "#0074d9",
+          color: "white",
+          padding: "2rem 1rem",
+          width: "250px",
+          minHeight: "100vh",
+        }}
+      >
+        <h1 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>{name}</h1>
+        <p style={{ fontStyle: "italic", marginBottom: "1.5rem" }}>{roll}</p>
 
-      <section id="home" style={{ display: "flex", gap: "2rem", padding: "2rem" }}>
+        <nav>
+          <ul style={{ listStyle: "none", padding: 0, marginBottom: "2rem" }}>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <a
+                href="#home"
+                style={{
+                  color: "white",
+                  fontWeight: "bold",
+                  textDecoration: "none",
+                }}
+              >
+                Home
+              </a>
+            </li>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <a
+                href="#publications"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Publications
+              </a>
+            </li>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <a
+                href="#projects"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Projects
+              </a>
+            </li>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <a
+                href="#search"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Search
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <img
+          src={image}
+          style={{ width: "100%", borderRadius: "5px", marginBottom: "1rem" }}
+        />
+
+        <p style={{ marginBottom: "1rem" }}>
+          {name}
+          <br />
+          {roll}
+          <br />
+        </p>
+
         <div>
-          <img src={image} style={{ width: "180px", borderRadius: "8px" }} />
-          <p>
-            <strong>Albert Einstein</strong><br />
-            Physicist<br />
-            University of Zurich<br />
-            Rämistrasse 71<br />
-            CH-8006 Zürich, Switzerland
-          </p>
-          <div style={{ marginTop: "1rem" }}>
-            <a href="#">Google Scholar</a><br />
-            <a href="#">Twitter</a><br />
-            <a href="#">Wikipedia</a><br />
-            <a href="#">Facebook</a>
-          </div>
+          <a
+            href="account"
+            style={{ color: "white", display: "block", marginBottom: "0.5rem" }}
+          >
+            Google Scholar
+          </a>
+          <a
+            href="#"
+            style={{ color: "white", display: "block", marginBottom: "0.5rem" }}
+          >
+            Twitter
+          </a>
+          <a
+            href="#"
+            style={{ color: "white", display: "block", marginBottom: "0.5rem" }}
+          >
+            Wikipedia
+          </a>
+          <a
+            href="#"
+            style={{ color: "white", display: "block", marginBottom: "0.5rem" }}
+          >
+            Facebook
+          </a>
         </div>
-        <div style={{ maxWidth: "600px" }}>
-          <h2 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>Welcome!</h2>
+      </aside>
+
+      <main style={{ flex: 1, padding: "2rem" }}>
+        <section id="home">
+          <div
+            style={{
+              width: "100%",
+              height: "250px",
+              background: `url(${background}) center/cover no-repeat`,
+              borderRadius: "8px",
+              marginBottom: "2rem",
+            }}
+          ></div>
+          <h2 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Welcome!</h2>
+          <p style={{ marginBottom: "2rem" }}>{bio}</p>
+        </section>
+
+        <section id="publications">
+          <h2 style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>
+            Publications
+          </h2>
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            {articles.map((article, index) => {
+              return (
+                <li key={index} style={{ marginBottom: "1.5rem" }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: "#0074d9",
+                      fontWeight: "bold",
+                      fontSize: "1.1rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    On the Relativity Principle and the Conclusions Drawn from It
+                  </a>
+                  <br />
+                  <small>Albert Einstein - Jahrbuch der Radioaktivität, 1907, pp. 411-462</small>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        <section id="projects">
+          <h2
+            style={{
+              fontSize: "1.8rem",
+              marginTop: "3rem",
+              marginBottom: "1rem",
+            }}
+          >
+            Projects
+          </h2>
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            <li style={{ marginBottom: "1.5rem" }}>
+              <a
+                href="#"
+                style={{
+                  color: "#0074d9",
+                  fontWeight: "bold",
+                  fontSize: "1.1rem",
+                  textDecoration: "none",
+                }}
+              >
+                Special relativity
+              </a>
+              <p>
+                In physics, special relativity is the generally accepted
+                physical theory regarding the relationship between space and
+                time.
+              </p>
+            </li>
+            <li style={{ marginBottom: "1.5rem" }}>
+              <a
+                href="#"
+                style={{
+                  color: "#0074d9",
+                  fontWeight: "bold",
+                  fontSize: "1.1rem",
+                  textDecoration: "none",
+                }}
+              >
+                Mass-energy equivalence
+              </a>
+              <p>
+                Mass–energy equivalence is the concept that the mass of an
+                object is a measure of its energy content.
+              </p>
+            </li>
+            <li style={{ marginBottom: "1.5rem" }}>
+              <a
+                href="#"
+                style={{
+                  color: "#0074d9",
+                  fontWeight: "bold",
+                  fontSize: "1.1rem",
+                  textDecoration: "none",
+                }}
+              >
+                Brownian motion
+              </a>
+              <p>
+                Brownian motion is the random motion of particles suspended in a
+                fluid resulting from their collision with molecules.
+              </p>
+            </li>
+            <li style={{ marginBottom: "1.5rem" }}>
+              <a
+                href="#"
+                style={{
+                  color: "#0074d9",
+                  fontWeight: "bold",
+                  fontSize: "1.1rem",
+                  textDecoration: "none",
+                }}
+              >
+                Photoelectric effect
+              </a>
+              <p>
+                Einstein described light as composed of discrete quanta, rather
+                than continuous waves.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2
+            style={{
+              fontSize: "1.8rem",
+              marginTop: "3rem",
+              marginBottom: "1rem",
+            }}
+          >
+            Pages
+          </h2>
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            <li>
+              <a
+                href="#"
+                style={{
+                  color: "#0074d9",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                }}
+              >
+                Achievements
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                style={{
+                  color: "#0074d9",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                }}
+              >
+                Press
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <footer
+          style={{
+            marginTop: "3rem",
+            paddingTop: "1rem",
+            fontSize: "0.9rem",
+            color: "#666",
+            borderTop: "1px solid #ccc",
+          }}
+        >
           <p>
-            Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc^2. He received the 1921 Nobel Prize in Physics for his "services to theoretical physics", in particular his discovery of the law of the photoelectric effect, a pivotal step in the evolution of quantum theory.
+            Share <a href="#">🐦</a> <a href="#">📘</a> <a href="#">💼</a>{" "}
+            <a href="#">✉️</a>
           </p>
-        </div>
-      </section>
-
-      <section id="publications" style={{ padding: "2rem" }}>
-        <h2 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Publications</h2>
-        <ul style={{ listStyle: "none" }}>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>On the Relativity Principle and the Conclusions Drawn from It</a><br />
-            <small>Albert Einstein - Jahrbuch der Radioaktivität, 1907</small>
-          </li>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>On the Electrodynamics of Moving Bodies</a><br />
-            <small>Albert Einstein - Annalen der Physik, 1905</small>
-          </li>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Does the Inertia of a Body Depend Upon Its Energy Content?</a><br />
-            <small>Albert Einstein - Annalen der Physik, 1905</small>
-          </li>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>On the Movement of Small Particles Suspended in Stationary Liquids</a><br />
-            <small>Albert Einstein - Annalen der Physik, 1905</small>
-          </li>
-        </ul>
-      </section>
-
-      <section id="projects" style={{ padding: "2rem" }}>
-        <h2 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Projects</h2>
-        <ul style={{ listStyle: "none" }}>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Special relativity</a>
-            <p>Special relativity is the theory regarding the relationship between space and time. It is based on two postulates about inertial systems.</p>
-          </li>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Mass-energy equivalence</a>
-            <p>The concept that the mass of an object is a measure of its energy content. Adding energy increases mass.</p>
-          </li>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Brownian motion</a>
-            <p>The random motion of particles suspended in a fluid resulting from their collisions with molecules in the gas or liquid.</p>
-          </li>
-          <li style={{ marginBottom: "1.5rem" }}>
-            <a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Photoelectric effect</a>
-            <p>Einstein described light as composed of quanta. Based on Max Planck’s theory of black-body radiation.</p>
-          </li>
-        </ul>
-      </section>
-
-      <section style={{ padding: "2rem" }}>
-        <h2 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Pages</h2>
-        <ul style={{ listStyle: "none" }}>
-          <li style={{ marginBottom: "1.5rem" }}><a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Achievements</a></li>
-          <li style={{ marginBottom: "1.5rem" }}><a href="#" style={{ color: "#2196f3", fontWeight: "bold", textDecoration: "none", fontSize: "1.1rem" }}>Press</a></li>
-        </ul>
-      </section>
-
-      <footer style={{ padding: "1rem", background: "#0b8bf2", textAlign: "center", fontSize: "0.9rem", color: "#666" }}>
-        <p>Share <a href="#">🐦</a> <a href="#">📘</a> <a href="#">💼</a> <a href="#">✉️</a></p>
-        <p>© 2025 Academic Web Builder</p>
-        <p><a href="#" style={{ color: "#0074d9" }}>Made in Quicksite</a></p>
-      </footer>
+          <p>
+            © 2025 Albert Einstein •{" "}
+            <a href="#" style={{ color: "#0074d9" }}>
+              Privacy Policy
+            </a>
+          </p>
+          <p>
+            <a href="#" style={{ color: "#0074d9" }}>
+              Made in Quicksite
+            </a>
+          </p>
+        </footer>
+      </main>
     </div>
   );
 };

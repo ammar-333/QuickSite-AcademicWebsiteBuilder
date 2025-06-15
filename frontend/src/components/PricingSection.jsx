@@ -38,7 +38,7 @@ const PricingSection = () => {
               variants={fadeIn("up", 0.7)}
               className="text-3xl font-bold mb-6"
             >
-              $10
+              Free
             </motion.p>
           </motion.div>
 
@@ -57,7 +57,7 @@ const PricingSection = () => {
               variants={fadeIn("up", 0.7)}
               className="text-3xl font-bold mb-6"
             >
-              $20
+              $10
             </motion.p>
           </motion.div>
         </motion.div>

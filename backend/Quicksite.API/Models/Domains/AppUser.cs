@@ -11,6 +11,8 @@ namespace Quicksite.API.Models.Domains
         public string? googleScholar { get; set; }
         public string? ScholarJson { get; set; }
         public byte[]? ScholarPdf { get; set; }
+        public string? Bio { get; set; }
+        public string? Preferences { get; set; }
         public virtual Payment? Payment { get; set; }
         public virtual Website? Website { get; set; }
     }

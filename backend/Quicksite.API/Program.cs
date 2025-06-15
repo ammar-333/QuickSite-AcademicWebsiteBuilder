@@ -9,6 +9,10 @@ using Quicksite.API.Repositories;
 using Quicksite.API.Services;
 using Quicksite.API.Models.Domains;
 using Microsoft.OpenApi.Models;
+using PaypalServerSdk.Standard;
+using Quicksite.API.Configuration;
+using Microsoft.Extensions.Options;
+using PaypalServerSdk.Standard.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,11 +97,35 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     });
 
+builder.Services.Configure<PayPalOptions>(
+    builder.Configuration.GetSection("Paypal"));
+
+builder.Services.AddSingleton(svc => {
+    var opts = svc.GetRequiredService<IOptions<PayPalOptions>>().Value;
+
+    return new PaypalServerSdkClient.Builder()
+        .Environment(PaypalServerSdk.Standard.Environment.Sandbox)
+        .ClientCredentialsAuth(
+            new ClientCredentialsAuthModel.Builder(
+                opts.ClientId,
+                opts.ClientSecret
+            ).Build()
+        )
+        .LoggingConfig(cfg => cfg
+        .LogLevel(LogLevel.Information)
+        .RequestConfig(r => r.Body(true))
+        .ResponseConfig(r => r.Headers(true))
+        )
+        .Build();
+});
 
 builder.Services.AddHttpClient<ScholarService>();
 builder.Services.AddScoped<ScholarService>();
 
-builder.Services.AddHttpClient<OpenAIService>();
+builder.Services
+  .AddHttpClient<OpenAIService>(client => {
+      client.Timeout = TimeSpan.FromMinutes(5);
+  }); 
 builder.Services.AddScoped<OpenAIService>();
 
 

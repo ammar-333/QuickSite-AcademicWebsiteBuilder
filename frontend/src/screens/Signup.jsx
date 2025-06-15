@@ -14,6 +14,8 @@ const Signup = () => {
   });
   const [errorMessage, setErrorMessage] = useState(null);
 
+  localStorage.setItem('Scholar', formData.googleScholar);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

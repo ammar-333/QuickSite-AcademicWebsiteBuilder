@@ -10,7 +10,7 @@ namespace Quicksite.API.Models.Dtos
         public decimal Amount { get; set; }
 
         public string Status { get; set; } = null!;
-
+        public string Currency { get; set; } = "USD";
         public string? PaymentHistory { get; set; }
         [JsonIgnore]
         public virtual AppUser AppUser { get; set; } = null!;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import web1 from "../assets/web1.png";
 import web2 from "../assets/web2.png";
 import web3 from "../assets/web3.png";
@@ -76,21 +76,30 @@ const ShowTemplate = () => {
   const [Edit, setEdit] = useState(false);
   const [website, setWebsite] = useState(0);
   const navigate = useNavigate();
+  const googleScholar = localStorage.getItem("Scholar");
+  const token = localStorage.getItem("token");
 
-  const handlebtn = () => {
+  const handlebtn = async () => {
     if (website == 0) {
       Swal.fire({
-      title: 'error',
-      text: 'You have to select a Template',
-      icon: 'error',
-      confirmButtonText: 'OK'
-    });
+        title: "error",
+        text: "You have to select a Template",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     } else {
-      const dataToSend = {
-        websiteId: { website },
-        style: "template"
-      };
-      navigate("/editwebsite", { state: dataToSend });
+        const res1 = await fetch(
+        `/api/Customer/scholar-json-url?scholarUrl=${encodeURIComponent(
+          googleScholar
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      navigate("/editwebsite");
     }
   };
 
@@ -105,20 +114,21 @@ const ShowTemplate = () => {
       </nav>
       {/* Sidebar */}
       <aside className="w-1/4 bg-white border-r border-gray-200 shadow-lg mt-12 min-h-screen flex flex-col overflow-y-auto pb-20">
-        {/* Header Section */}
-        <div className="p-6 border-b bg-gradient-to-r from-purple-300 to-indigo-300 border-gray-200">
-          <p className="font-extrabold text-3xl text-gray-800 mb-4">
-            🎨 Design Wiz
-          </p>
-          <button
-            onClick={handlebtn}
-            className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold px-4 py-2 rounded-xl shadow hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 mb-6"
-          >
-            Apply design to existing site
-          </button>
-          <p className=" text-gray-700 font-bold text-3xl pt-5 ml-25 text-gray-800">
-            Themes
-          </p>
+        <div className="p-8 border-b bg-gradient-to-r from-purple-400  to-indigo-400 border-gray-200 rounded-b-2xl shadow-lg">
+          <div className="text-center">
+            <p className="font-extrabold text-4xl text-white drop-shadow-sm mb-6 animate-fade-in">
+              🎨 Design Wiz
+            </p>
+            <button
+              onClick={handlebtn}
+              className="mx-auto block bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300"
+            >
+              Apply Design to Existing Site
+            </button>
+            <p className="text-white font-extrabold text-3xl mt-10 tracking-wide">
+              ✨ Themes
+            </p>
+          </div>
         </div>
 
         {/* Theme List Section */}

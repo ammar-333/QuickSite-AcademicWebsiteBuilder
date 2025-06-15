@@ -1,10 +1,19 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using PaypalServerSdk.Standard;
+using PaypalServerSdk.Standard.Controllers;
+using PaypalServerSdk.Standard.Http.Response;
+using PaypalServerSdk.Standard.Models;
 using Quicksite.API.Data;
 using Quicksite.API.Models.Domains;
 using Quicksite.API.Models.Dtos;
+using System.Security.Claims;
+
+
 
 namespace Quicksite.API.Controllers
 {
@@ -14,11 +23,15 @@ namespace Quicksite.API.Controllers
     {
         private readonly QuicksiteDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly OrdersController _ordersCtrl;
+        private readonly PaymentsController _paymentsCtrl;
 
-        public PaymentController(QuicksiteDbContext dbContext, IMapper mapper)
+        public PaymentController(QuicksiteDbContext dbContext, IMapper mapper, PaypalServerSdkClient client)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            _ordersCtrl = client.OrdersController;
+            _paymentsCtrl = client.PaymentsController;
         }
 
         //GetAll Payments
@@ -49,40 +62,87 @@ namespace Quicksite.API.Controllers
             return Ok(PaymentDto);
         }
 
-        //create new Payments
-        //POST:  https://localhost:portnumber/api/Payment
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddPaymentDto addPaymentDto)
+
+        [Authorize]
+        [HttpPost("make")]
+        public async Task<IActionResult> Make([FromBody] AddPaymentDto dto)
         {
+            var input = new CreateOrderInput
+            {
+                Body = new OrderRequest
+                {
+                    Intent = CheckoutPaymentIntent.Capture,
+                    PurchaseUnits = new List<PurchaseUnitRequest>
+                    {
+                      new PurchaseUnitRequest 
+                      {
+                        Amount = new AmountWithBreakdown 
+                        {
+                          CurrencyCode = dto.Currency,
+                          MValue = dto.Amount.ToString("F2")
+                        }
+                      }
+                    }
+                }
+            };
 
-            var PaymentModel = mapper.Map<Payment>(addPaymentDto);
+            ApiResponse<Order> result = await _ordersCtrl.CreateOrderAsync(input);
 
-            //map to the db
-            await dbContext.Payments.AddAsync(PaymentModel);
-            await dbContext.SaveChangesAsync();
+            var code = (int)result.StatusCode;
+            if (code < 200 || code >= 300)
+                // return whatever PayPal sent back in its Data
+                return StatusCode(code, result.Data);
 
-            var PaymentDto = mapper.Map<PaymentDto>(PaymentModel);
+            var approvalLink = result.Data.Links
+                .FirstOrDefault(l =>
+                    l.Rel.Equals("approve", StringComparison.OrdinalIgnoreCase)
+                 )?
+                .Href;
 
-            return Ok(PaymentDto);
+
+            return Ok(new
+            {
+                orderId = result.Data.Id,
+                approvalUrl = approvalLink
+            });
         }
 
-
-        //Delete a Payment
-        // DELETE: https://localhost:portnumber/api/Payment/{id}
-        [HttpDelete("{id:Guid}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        [Authorize]
+        [HttpPost("capture/{orderId}")]
+        public async Task<IActionResult> Capture([FromQuery] string orderId)
         {
-            //Check if region exists
-            var PaymentModel = await dbContext.Payments.FindAsync(id);
+            var captureInput = new CaptureOrderInput { Id = orderId };
+            ApiResponse<Order> result = await _ordersCtrl.CaptureOrderAsync(captureInput);
 
-            if (PaymentModel == null) return NotFound();
+            var code = (int)result.StatusCode;
+            if (code < 200 || code >= 300)
+                return StatusCode(code, new { error = result.Data });
 
-            //delete
-            dbContext.Payments.Remove(PaymentModel);
+            var unit = result.Data.PurchaseUnits.First();
+            var amt = decimal.Parse(unit.Amount.MValue!);
+            var statusString = result.Data.Status?.ToString() ?? "UNKNOWN";
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            var payment = new Payment
+            {
+                PaymentId = Guid.NewGuid(),
+                AppUserId = userId,
+                Amount = amt,
+                Currency = unit.Amount.CurrencyCode!,
+                Status = statusString,
+                PaymentHistory = JsonConvert.SerializeObject(result.Data)
+            };
+
+            dbContext.Payments.Add(payment);
             await dbContext.SaveChangesAsync();
 
-            return Ok();
+            return Ok(new
+            {
+                message = "Payment captured",
+                status = statusString
+            });
         }
+
 
     }
 }

@@ -163,6 +163,9 @@ namespace Quicksite.API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("College")
                         .HasColumnType("nvarchar(max)");
 
@@ -202,6 +205,9 @@ namespace Quicksite.API.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Preferences")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ScholarJson")
                         .HasColumnType("nvarchar(max)");
@@ -250,6 +256,10 @@ namespace Quicksite.API.Migrations
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentHistory")
                         .HasColumnType("nvarchar(max)");

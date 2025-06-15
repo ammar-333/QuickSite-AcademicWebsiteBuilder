@@ -185,7 +185,32 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Payment/{id}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/make": {
       "post": {
         "tags": [
           "Payment"
@@ -216,40 +241,25 @@
         }
       }
     },
-    "/api/Payment/{id}": {
-      "get": {
+    "/api/Payment/capture/{orderId}": {
+      "post": {
         "tags": [
           "Payment"
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "orderId",
+            "in": "query",
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Payment"
-        ],
-        "parameters": [
+          },
           {
-            "name": "id",
+            "name": "orderId",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           }
         ],
@@ -446,6 +456,25 @@
         "tags": [
           "Website"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -518,15 +547,10 @@
       "AddPaymentDto": {
         "required": [
           "amount",
-          "appUserId",
           "status"
         ],
         "type": "object",
         "properties": {
-          "appUserId": {
-            "minLength": 1,
-            "type": "string"
-          },
           "amount": {
             "type": "number",
             "format": "double"
@@ -536,7 +560,7 @@
             "pattern": "Success|Pending|Failed",
             "type": "string"
           },
-          "paymentHistory": {
+          "currency": {
             "type": "string",
             "nullable": true
           }
@@ -585,6 +609,20 @@
           "lastModified": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GenerateRequest": {
+        "type": "object",
+        "properties": {
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferences": {
+            "type": "string",
             "nullable": true
           }
         },

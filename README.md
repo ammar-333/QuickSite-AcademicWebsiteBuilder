@@ -2,11 +2,6 @@
 
 QuickSite is an AI-powered Academic-Website-Builder designed to help academics create professional websites effortlessly. It automates the process of building a website, integrating publications, and managing content, allowing researchers to focus on their work.
 
-## 🚀 Getting Started
-
-Follow these instructions to set up and run the project locally.
-
----
 
 ### 🧹 Tech Stack
 
@@ -16,6 +11,35 @@ Follow these instructions to set up and run the project locally.
 * **Package Manager**: Yarn (frontend), .NET CLI (backend)
 
 ---
+
+## ✅ Features
+
+* 🔐 User authentication
+* 📄 CRUD operations
+* ⚡ Fast dev experience with Vite
+* 🔌 RESTful API with ASP.NET Core
+
+---
+
+## 🚀 Getting Started
+
+Follow these instructions to set up and run the project locally.
+
+---
+
+
+
+## 📋 Prerequisites
+
+Before running the project, make sure you have the following installed:
+
+- [.NET SDK](https://dotnet.microsoft.com/download)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+- Visual Studio or any IDE that supports .NET
+
+---
+
 
 ## 📂 Project Structure
 
@@ -55,36 +79,53 @@ The app supports hot module replacement and reloads automatically on code change
 
 In the `/backend` directory:
 
-### Using .NET CLI:
 
-```bash
-dotnet run
+### Using visual studio:
+
+```
+Run with https
 ```
 
-By default, it will be available at: [https://localhost:5001](https://localhost:5001)
-
-You can configure the port and environment in `launchSettings.json` or via CLI.
+By default, it will be available at: [https://localhost:7139](https://localhost:7138)
 
 ---
 
 ## 🔄 Connecting Frontend and Backend
 
-Update the API base URL in your frontend code (e.g., in an `.env` or config file):
+Update the API base URL in your frontend code ( in `Vite.config` file):
 
-```env
-VITE_API_URL=https://localhost:5001
+```
+ target: 'https://localhost:7138',
 ```
 
 Make sure CORS is enabled in your ASP.NET API to allow communication between frontend and backend.
 
 ---
 
-## ✅ Features
+## ⚙️ Setting Up the Database
 
-* 🔐 User authentication
-* 📄 CRUD operations
-* ⚡ Fast dev experience with Vite
-* 🔌 RESTful API with ASP.NET Core
+Follow the steps below to configure and run the database:
+
+### 1. Update the Connection String
+
+Open the `appsettings.json` file and update the connection string with your own SQL Server instance:
+
+```json
+"ConnectionStrings": {
+  "QuickSiteConnectionString": "Server=YOUR_SERVER_NAME;Database=QuickSiteDb;Trusted_Connection=True;TrustServerCertificate=True"
+}
+```
+
+### 2. Apply Migrations
+
+Open Package Manager Console
+(Tools → NuGet Package Manager → Package Manager Console) and run the following commands:
+* Add-Migration "InitialCreate"
+* Update-Database
+
+
+## 🎉 You're All Set!
+Your website is now running and ready to use.
 
 ---
 

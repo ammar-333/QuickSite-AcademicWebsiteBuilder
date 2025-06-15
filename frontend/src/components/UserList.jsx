@@ -3,13 +3,54 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import profileImg from '../assets/blankProfilePicture.png';
 
 // Sample/mock user data
-const mockUsers = Array.from({ length: 35 }, (_, i) => ({
-  id: i + 1,
-  name: `User ${i + 1}`,
+const mockUsers = [
+  {
+  id: 1,
+  name: `yahia`,
+  description: `Professor of Computer Science
+Jordan University of Science and Technology`,
+  location: `Jorden`,
+  website: `https://localhost:7138/api/Website/ahmad-shaban-7af5edd591e642698`,
+ }, 
+ {
+  id: 2,
+  name: `farah`,
+  description: `Assistant Professor, Data Science | Jordan University of Science and Technology`,
+  location: `Jordan`,
+  website: `https://localhost:7138/api/Website/farah-2a6c6425862a455fa53dfc8c`,
+ }, 
+ {
+  id: 3,
+  name: `yaser`,
+  description: `Professor, Computer Science Department
+Jordan University of Science and Technology`,
+  location: `jordan`,
+  website: `https://localhost:7138/api/Website/saed-71dc858225bd4e2e88f34ac90`,
+ }, 
+ {
+  id: 4,
+  name: `User`,
   description: `Research in AI, Graph Theory, Cybersecurity`,
-  location: `College ${i % 4 + 1} (Country)`,
-  website: `https://user${i + 1}.academic.ws`,
-}));
+  location: `jordan`,
+  website: `https://user4.academic.ws`,
+ }, 
+  { id: 5, name: 'monir', description: 'Research in AI, cs, Cybersecurity', location: 'yarmok', website: 'https://localhost:7138/api/Website/monir-ba95ba2ea8394984ad6a378f' },
+  { id: 6, name: 'ahmad mohsen', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'jordan', website: 'https://localhost:7138/api/Website/ahmad-mohsen-29a3a970400941a89' },
+  { id: 7, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 3 (Country)', website: 'https://user3.academic.ws' },
+  { id: 8, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 4 (Country)', website: 'https://user4.academic.ws' },
+  { id: 9, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 1 (Country)', website: 'https://user5.academic.ws' },
+  { id: 10, name: 'User ', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 2 (Country)', website: 'https://user6.academic.ws' },
+  { id: 11, name: 'User ', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 3 (Country)', website: 'https://user7.academic.ws' },
+  { id: 12, name: 'User ', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 4 (Country)', website: 'https://user8.academic.ws' },
+  { id: 13, name: 'User ', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 1 (Country)', website: 'https://user9.academic.ws' },
+  { id: 14, name: 'User ', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 2 (Country)', website: 'https://user10.academic.ws' },
+  { id: 15, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 3 (Country)', website: 'https://user11.academic.ws' },
+  { id: 16, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 4 (Country)', website: 'https://user12.academic.ws' },
+  { id: 17, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 1 (Country)', website: 'https://user13.academic.ws' },
+  { id: 18, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 2 (Country)', website: 'https://user14.academic.ws' },
+  { id: 19, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 3 (Country)', website: 'https://user15.academic.ws' },
+  { id: 20, name: 'User', description: 'Research in AI, Graph Theory, Cybersecurity', location: 'College 4 (Country)', website: 'https://user16.academic.ws' },
+];
 
 const USERS_PER_PAGE = 10;
 

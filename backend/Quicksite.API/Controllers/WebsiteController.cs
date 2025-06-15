@@ -110,17 +110,23 @@ namespace Quicksite.API.Controllers
 
         [Authorize]
         [HttpPost("generate")]
-        public async Task<IActionResult> GenerateWebsite()
+        public async Task<IActionResult> GenerateWebsite([FromBody] GenerateRequest req)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await userManager.FindByIdAsync(userId);
             if (user == null || string.IsNullOrWhiteSpace(user.ScholarJson))
                 return BadRequest("No scholar profile data found.");
 
+            user.Bio = req.Bio;
+            user.Preferences = req.Preferences;
+            var updateResult = await userManager.UpdateAsync(user);
+            if (!updateResult.Succeeded)
+                return BadRequest(updateResult.Errors);
+
             try
             {
                 // 1) Generate HTML
-                var html = await _openAIService.GeneratePortfolioHtmlAsync(user.ScholarJson);
+                var html = await _openAIService.GeneratePortfolioHtmlAsync(user.ScholarJson, user.Bio, user.Preferences);
 
                 // 2) Build or update slug + record
                 var slug = $"{user.UserName.Replace(" ", "-")}-{Guid.NewGuid():N}".Substring(0, 30);
@@ -171,9 +177,9 @@ namespace Quicksite.API.Controllers
 
 
 
-            //Update a Website
-            //Put: https://Localhost:portnumber/api/Website/{id}
-            [HttpPut]
+        //Update a Website
+        //Put: https://Localhost:portnumber/api/Website/{id}
+        [HttpPut]
         [Route("{id:Guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateWebsiteDto updateWebsiteDto)
         {

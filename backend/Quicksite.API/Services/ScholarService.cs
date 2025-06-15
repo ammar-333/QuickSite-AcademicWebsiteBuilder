@@ -13,7 +13,6 @@ namespace Quicksite.API.Services
     public class ScholarService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiKey = "b0e3a608a96eb4d78b6681063397eada8d320cf5f144f4282563c6bf2fa2fb19";
 
         public ScholarService(HttpClient httpClient)
         {

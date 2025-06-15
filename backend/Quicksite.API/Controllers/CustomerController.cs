@@ -72,7 +72,6 @@ namespace Quicksite.API.Controllers
             });
         }
 
-
         //create new customer 
         //Post https://localhost:portnumber/api/Customer
         [HttpPost]
