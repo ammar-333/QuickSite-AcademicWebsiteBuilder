@@ -37,3 +37,13 @@ QuickSite is an AI-powered Academic-Website-Builder designed to help academics c
 ## 📖 License
 
 MIT – feel free to use and modify.
+
+---
+
+![Logo](frontend/public/websiteImages/home.png)
+![Logo](frontend/public/websiteImages/gallary.png)
+![Logo](frontend/public/websiteImages/signup.png)
+![Logo](frontend/public/websiteImages/dashboard.png)
+![Logo](frontend/public/websiteImages/build.png)
+![Logo](frontend/public/websiteImages/payment.png)
+![Logo](frontend/public/websiteImages/wait.png)
